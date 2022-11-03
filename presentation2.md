@@ -2,7 +2,7 @@
 marp: true
 author: Kamil Myćka
 theme: default
-backgroundColor: #e2f5f5
+backgroundColor: #e1e2e7
 ---
 # Projekt JPWP
 Prezentacja 2</br>
@@ -65,7 +65,7 @@ podsumawania gry w postaci punktacji i czasu gry.
 
 ---
 # Grafiki poglądowe
-![pic1](/Pictures/early-game-idea1.png)
+![pic1](Pictures/early-game-idea1.png)
 
 ---
-![pic2](/Pictures/early-game-idea2.png)
+![pic2](Pictures/early-game-idea2.png)
