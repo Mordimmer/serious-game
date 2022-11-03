@@ -1,8 +1,6 @@
 ---
 marp: true
 author: Kamil Myćka
-theme: default
-backgroundColor: #e1e2e7
 ---
 # Projekt JPWP
 Prezentacja 2</br>
