@@ -65,4 +65,7 @@ podsumawania gry w postaci punktacji i czasu gry.
 
 ---
 # Grafiki poglądowe
-![pic1](serios-game/Pictures/early-game-idea1.png)
+![pic1](/Pictures/early-game-idea1.png)
+
+---
+![pic2](/Pictures/early-game-idea2.png)
