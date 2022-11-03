@@ -5,6 +5,7 @@ author: Kamil Myćka
 # Projekt JPWP
 Prezentacja 2</br>
 Kamil Myćka
+Link do repozytorium: [serious-game](https://github.com/Mordimmer/serious-game.git)
 
 ---
 # Temat projektu:
@@ -36,8 +37,7 @@ Wśród artykułów można znaleść sporo pozyji traktujących o zastosowaniu p
 * Rozpoczęcie od względnie prostych zadań
 * Stopniowe zwiększanie poziomu trudności, wraz z poziomami
 * Po włączeniu programu użytkownik znajdzie się w menu, pozwalającym wybrać poziom
-* Zadaniem użytkownika jest rozwiązanie równać matematychnych w określonych ramach
-czasowych
+* Zadaniem użytkownika jest rozwiązanie równać matematycznych w określonych ramach czasowych
 * Rozwiązywanie kolejnych równać skutkować będzie przejściem na kolejny poziom, ze zwiększonym poziomem trudności
 * Gra skończy się w przypadku wielkorotnie błędnie roziązanych równań, a użytkownik poinformowany zostanie o ilości zdobytych punktów, które wynikać będą z czasu spędzonego w grze i ilości poprawnie rozwiązanych równań
 
@@ -55,10 +55,8 @@ czasowych
 * Po pokananiu określonej ilości przeciwników gracz musi przejść przez drzwi, co skutkuje przeniesieniem go na kolejną planszę z większym poziomem trudności
 
 ---
-* W przypadku przejściu wyszystkich poziomów gracz otrzymuje swoją punktację wraz z
-czasem gry.
-* Błędne rozwiąznie równań kilka razy pod rząd skutkuje porażką i otrzymaniem
-podsumawania gry w postaci punktacji i czasu gry.
+* W przypadku przejściu wyszystkich poziomów gracz otrzymuje swoją punktację wraz z czasem gry.
+* Błędne rozwiąznie równań kilka razy pod rząd skutkuje porażką i otrzymaniem podsumawania gry w postaci punktacji i czasu gry.
 * Zarówno po wygranej i porażce gracz zastaje zapytany, czy chce rozpocząć grę od nowa
 
 ---
