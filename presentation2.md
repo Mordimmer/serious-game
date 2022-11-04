@@ -13,8 +13,7 @@ Link do repozytorium: [serious-game](https://github.com/Mordimmer/serious-game.g
 Interaktywna gra komputerowa w stylu JRPG
 
 # Docelowi użytkownicy gry: 
-Dzieci w wieku wczesnoszkolnym, rozpoczynający swoja naukę matematyki, oraz ludzie pragnący
-polepszyć swoje zdolności matematyczne.
+Dzieci w wieku wczesnoszkolnym, rozpoczynający swoja naukę matematyki, oraz ludzie pragnący polepszyć swoje zdolności matematyczne.
 
 # Realizacja projektu:
 Docelowo projekt zostanie wykonany w technologi Java SDK w środowisku VS Code
@@ -25,12 +24,12 @@ Celem projektu jest utworzenie prostej gry w stylu JRPG, podana do gier z serii 
 
 ---
 # Stan wiedzy 
-Wśród artykułów można znaleść sporo pozyji traktujących o zastosowaniu poważnych gier w celu rozwoju matematyczego Autorzy artykułu [^1] wskazują, że dzięki zwiększeniu zaangażowania i postawienia ucznia przed realnym problemem który należy rozwiązać jesteśmy w stanie zachęcić go do szukania kreatywnych rozwiązań, co rozwiaja jego zdolności logicznego myślenia, a nabyta tym sposobem lekcja zostaje dużo lepiej utrwalona. W [2] zaznaczona jest potrzeba stworzenia gry na tyle ciekawej oraz interesującej, by uczeń chciał do niej wracać i grać w swoim wolnym czasie. Autorzy zaznaczają również potrzebe stworzenia systemu informacji zwrotnej(feedback'u) i nagrody, co wpływa na zaangażowanie gracza. 
+Wśród artykułów można znaleść sporo pozyji traktujących o zastosowaniu poważnych gier w celu rozwoju matematyczego Autorzy artykułu [1] wskazują, że dzięki zwiększeniu zaangażowania i postawienia ucznia przed realnym problemem który należy rozwiązać jesteśmy w stanie zachęcić go do szukania kreatywnych rozwiązań, co rozwiaja jego zdolności logicznego myślenia, a nabyta tym sposobem lekcja zostaje dużo lepiej utrwalona. W [2] zaznaczona jest potrzeba stworzenia gry na tyle ciekawej oraz interesującej, by uczeń chciał do niej wracać i grać w swoim wolnym czasie. Autorzy zaznaczają również potrzebe stworzenia systemu informacji zwrotnej(feedback'u) i nagrody, co wpływa na zaangażowanie gracza. 
 
 ---
 > Rewards such as extra lives, points, money, ability to unlock special skills and tools, promotion to a new higher level, all help keep a player engaged in game play and are illustrated through comments such as ‘earning new points’, ‘achieving new things’ and ‘being able to play better’. Having a variety of rewards, feedback mechanisms and progression routes can all support a more engaging experience for the player.”
 
-[^1] Serious game in science education: How we can develop mathematical education; M. Hosťovecký, I. Šalgovič, Roderik Virágh
+[1] Serious game in science education: How we can develop mathematical education; M. Hosťovecký, I. Šalgovič, Roderik Virágh
 [2] Learning Mathematics Through Serious Games: An engagement framework; Opeyemi Dele- Ajayi, Rebecca Strachan, Jonathan Sanderson, Alison Pickard
 
 ---
