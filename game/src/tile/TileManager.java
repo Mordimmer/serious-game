@@ -11,10 +11,10 @@ import java.awt.Graphics2D;
 public class TileManager {
     GamePanel gp;
     public Tile[] tile;
-    public int mapTileNum [][];
+    public int mapTileNum[][];
 
     public TileManager(GamePanel gp) {
-        
+
         this.gp = gp;
         tile = new Tile[10]; // 3 shoud be enough for now, but we can add more later
         mapTileNum = new int[gp.maxScreenCol][gp.maxScreenRow];
@@ -27,14 +27,14 @@ public class TileManager {
         try {
 
             tile[0] = new Tile();
-            tile[0].image = ImageIO.read(getClass().getResourceAsStream("res/tiles/road.png"));
+            tile[0].image = ImageIO.read(getClass().getResourceAsStream("res/road.png"));
 
             tile[1] = new Tile();
-            tile[1].image = ImageIO.read(getClass().getResourceAsStream("res/tiles/rock.png"));
+            tile[1].image = ImageIO.read(getClass().getResourceAsStream("res/rock.png"));
             tile[1].collision = true;
 
             tile[2] = new Tile();
-            tile[2].image = ImageIO.read(getClass().getResourceAsStream("res/tiles/door.png"));
+            tile[2].image = ImageIO.read(getClass().getResourceAsStream("res/door.png"));
 
         } catch (IOException e) {
 
@@ -43,35 +43,36 @@ public class TileManager {
         }
     }
 
-    public void loadMap(String filePath){
-        try{
+    public void loadMap(String filePath) {
+        try {
 
             InputStream is = getClass().getResourceAsStream(filePath);
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
-        
+
             int col = 0;
             int row = 0;
 
-            while(col < gp.maxScreenCol && row < gp.maxScreenRow){
+            while (col < gp.maxScreenCol && row < gp.maxScreenRow) {
                 String line = br.readLine();
 
-                while(col < gp.maxScreenCol){
+                while (col < gp.maxScreenCol) {
                     String numbers[] = line.split(" ");
                     int num = Integer.parseInt(numbers[col]);
                     mapTileNum[col][row] = num;
                     col++;
                 }
-                if(col == gp.maxScreenCol){
+                if (col == gp.maxScreenCol) {
                     col = 0;
                     row++;
                 }
             }
             br.close();
-        }catch(Exception e){
+        } catch (Exception e) {
 
         }
     }
-    //DRAW MAP
+
+    // DRAW MAP
     public void draw(Graphics2D g2) {
         int col = 0;
         int row = 0;

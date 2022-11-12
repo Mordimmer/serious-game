@@ -10,38 +10,41 @@ import java.awt.Rectangle;
 public class Player extends Entity {
     GamePanel gp;
     KeyHandler keyH;
+    int defeatedEnemies = 0;
 
     public Player(GamePanel gp, KeyHandler keyH) {
         this.gp = gp;
         this.keyH = keyH;
-        
-        solidArea = new Rectangle(0, 18, 48, 30);
+
+        solidArea = new Rectangle(8, 18, 30, 30);
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY = solidArea.y;
 
         setDefaultValues();
         getPlayerImage();
     }
 
     public void setDefaultValues() {
-        //SPAWN PLAYER LOCATION
-        worldX = gp.titleSize*13; 
-        worldY = gp.titleSize*9; 
+        // SPAWN PLAYER LOCATION
+        worldX = gp.titleSize * 13;
+        worldY = gp.titleSize * 9;
 
         speed = 4;
-        //DEFAULT POSITION
+        // DEFAULT POSITION
         direction = "down";
     }
 
-    //LOAD PLAYER SPRITES
+    // LOAD PLAYER SPRITES
     public void getPlayerImage() {
         try {
-            down1 = ImageIO.read(getClass().getResourceAsStream("res/player/pc-front-1.png"));
-            down2 = ImageIO.read(getClass().getResourceAsStream("res/player/pc-front-2.png"));
-            right1 = ImageIO.read(getClass().getResourceAsStream("res/player/pc-right-1.png"));
-            right2 = ImageIO.read(getClass().getResourceAsStream("res/player/pc-right-2.png"));
-            left1 = ImageIO.read(getClass().getResourceAsStream("res/player/pc-left-1.png"));
-            left2 = ImageIO.read(getClass().getResourceAsStream("res/player/pc-left-2.png"));
-            up1 = ImageIO.read(getClass().getResourceAsStream("res/player/pc-back-1.png"));
-            up2 = ImageIO.read(getClass().getResourceAsStream("res/player/pc-back-2.png"));
+            down1 = ImageIO.read(getClass().getResourceAsStream("res/pc-front-1.png"));
+            down2 = ImageIO.read(getClass().getResourceAsStream("res/pc-front-2.png"));
+            right1 = ImageIO.read(getClass().getResourceAsStream("res/pc-right-1.png"));
+            right2 = ImageIO.read(getClass().getResourceAsStream("res/pc-right-2.png"));
+            left1 = ImageIO.read(getClass().getResourceAsStream("res/pc-left-1.png"));
+            left2 = ImageIO.read(getClass().getResourceAsStream("res/pc-left-2.png"));
+            up1 = ImageIO.read(getClass().getResourceAsStream("res/pc-back-1.png"));
+            up2 = ImageIO.read(getClass().getResourceAsStream("res/pc-back-2.png"));
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -65,13 +68,17 @@ public class Player extends Entity {
                 direction = "right";
             }
 
-            //CHECK TILE COLLISION
+            // CHECK TILE COLLISION
             collisionOn = false;
             gp.cChecker.checkTile(this);
 
-            //IF COLLISION IS FALSE, PLAYER CAN MOVE
-            if(collisionOn == false){
-                switch(direction){
+            // CHECK OBJECT COLLISION
+            int objIndex = gp.cChecker.checkObject(this, true);
+            pickUpObject(objIndex);
+
+            // IF COLLISION IS FALSE, PLAYER CAN MOVE
+            if (collisionOn == false) {
+                switch (direction) {
                     case "up":
                         worldY -= speed;
                         break;
@@ -95,6 +102,27 @@ public class Player extends Entity {
                     spriteNum = 1;
                 }
                 spriteCounter = 0;
+            }
+        }
+    }
+
+    public void pickUpObject(int i) {
+
+        if (i != 999) {
+
+            String objectName = gp.obj[i].name;
+
+            switch (objectName) {
+                case "Enemy":
+                    defeatedEnemies++;
+                    gp.obj[i] = null;
+                    break;
+                case "Door":
+                    if (defeatedEnemies == 3) {
+                        System.out.print("You win!");
+                        gp.obj[i] = null;
+                    }
+                    break;
             }
         }
     }
