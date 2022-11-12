@@ -10,7 +10,7 @@ import java.awt.Rectangle;
 public class Player extends Entity {
     GamePanel gp;
     KeyHandler keyH;
-    int defeatedEnemies = 0;
+    public int defeatedEnemies = 0;
 
     public Player(GamePanel gp, KeyHandler keyH) {
         this.gp = gp;
@@ -106,6 +106,7 @@ public class Player extends Entity {
         }
     }
 
+    // WHAT HAPPENS AFTER INTERACTION WITH OBJECT
     public void pickUpObject(int i) {
 
         if (i != 999) {
@@ -116,11 +117,21 @@ public class Player extends Entity {
                 case "Enemy":
                     defeatedEnemies++;
                     gp.obj[i] = null;
+                    gp.ui.showMessage("You defeated an enemy!");
                     break;
                 case "Door":
                     if (defeatedEnemies == 3) {
-                        System.out.print("You win!");
                         gp.obj[i] = null;
+                        gp.ui.showMessage("You won!");
+                        gp.ui.gameFinished = true;
+                        // close game window
+                        // System.exit(0);
+                    } else {
+                        if (defeatedEnemies == 2) {
+                            gp.ui.showMessage("You need to defeat 1 more enemy!");
+                        } else {
+                            gp.ui.showMessage("You need to defeat " + (3 - defeatedEnemies) + " more enemies!");
+                        }
                     }
                     break;
             }
