@@ -2,7 +2,7 @@
 Serious game about math learning for children
 
 ## How to play
-Use WASD to move character around the map, defeat enemies ny solving math problems in given time, after defeating all enemies you will win. Soon I will try to add more level.
+Use WASD to move character around the map, defeat enemies ny solving math problems in given time. After defeating all enemies you will win. Soon I will try to add more level.
 
 ## Key mapping
 * W - move up
