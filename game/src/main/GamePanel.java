@@ -64,6 +64,7 @@ public class GamePanel extends JPanel implements Runnable {
         ui.playTime = 0;
         gameState = playState;
         player.defeatedEnemies = 0;
+        ui.timeLeft = 10;
     }
 
     public void startGameThread() {
