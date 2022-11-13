@@ -83,15 +83,15 @@ public class TileManager {
 
             int tileNum = mapTileNum[col][row];
 
-            g2.drawImage(tile[tileNum].image, x, y, gp.titleSize, gp.titleSize, null);
+            g2.drawImage(tile[tileNum].image, x, y, gp.tileSize, gp.tileSize, null);
             col++;
-            x += gp.titleSize;
+            x += gp.tileSize;
 
             if (col == gp.maxScreenCol) {
                 col = 0;
                 row++;
                 x = 0;
-                y += gp.titleSize;
+                y += gp.tileSize;
             }
         }
     }

@@ -1,7 +1,6 @@
 package main;
 
 import javax.swing.JPanel;
-
 import java.awt.Graphics;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -12,26 +11,38 @@ import tile.TileManager;
 
 public class GamePanel extends JPanel implements Runnable {
     // SCREEN SETINGS
-    final int originalTitleSize = 16; // 16x16 tile for a characters, enemies etc.
+    final int originaltileSize = 16; // 16x16 tile for a characters, enemies etc.
     final int scale = 3; // 3x scale
 
-    public final int titleSize = originalTitleSize * scale; // 48x48 tile
+    public final int tileSize = originaltileSize * scale; // 48x48 tile
     public final int maxScreenCol = 16;
     public final int maxScreenRow = 12;
-    final int screenWidth = maxScreenCol * titleSize; // 768 px
-    final int screenHeight = maxScreenRow * titleSize; // 576 px
+    final int screenWidth = maxScreenCol * tileSize; // 768 px
+    final int screenHeight = maxScreenRow * tileSize; // 576 px
 
     // FPS
     final int FPS = 60;
 
     TileManager tileM = new TileManager(this);
-    public KeyHandler keyH = new KeyHandler();
+    public KeyHandler keyH = new KeyHandler(this);
     Thread gameThread;
     public CollisionChecker cChecker = new CollisionChecker(this);
     public AssetSetter aSetter = new AssetSetter(this);
     public UI ui = new UI(this);
+
+    // PLAYER AND OBJECTS
     Player player = new Player(this, keyH);
     public SuperObject obj[] = new SuperObject[10];
+
+    // GAME STATE
+    public int gameState;
+    public final int titleState = 0;
+    public final int playState = 1;
+    public final int pauseState = 2;
+    public final int fightState = 3;
+    public final int helpState = 4;
+    public final int winState = 5;
+    public final int gameOverState = 6;
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -41,8 +52,18 @@ public class GamePanel extends JPanel implements Runnable {
         this.setFocusable(true);
     }
 
-    public void setupGame(){
+    public void setupGame() {
         aSetter.setObject();
+        gameState = titleState;
+    }
+
+    public void retry() {
+
+        player.setDefaultValues();
+        aSetter.setObject();
+        ui.playTime = 0;
+        gameState = playState;
+        player.defeatedEnemies = 0;
     }
 
     public void startGameThread() {
@@ -70,23 +91,39 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void update() {
-        player.update();
+
+        if (gameState == playState) {
+            player.update();
+        }
+        if (gameState == pauseState) {
+
+        }
+        if (gameState == fightState) {
+
+        }
     }
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
-        tileM.draw(g2);
-        
-        //DRAW OBJECTS
-        for(int i = 0; i < obj.length; i++){
-            if(obj[i] != null){
-                obj[i].draw(g2, this);
+
+        // TITLE SCREEB
+        if (gameState == titleState) {
+            ui.draw(g2);
+        } else {
+            tileM.draw(g2);
+
+            // DRAW OBJECTS
+            for (int i = 0; i < obj.length; i++) {
+                if (obj[i] != null) {
+                    obj[i].draw(g2, this);
+                }
             }
+
+            player.draw(g2);
+            ui.draw(g2);
+            g2.dispose();
         }
 
-        player.draw(g2);
-        ui.draw(g2);
-        g2.dispose();
     }
 }

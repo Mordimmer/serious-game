@@ -8,7 +8,7 @@ import main.GamePanel;
 
 public class SuperObject {
 
-    public BufferedImage image;
+    public BufferedImage image, image2;
     public String name;
     public boolean collision = false;
     public int worldX, worldY;
@@ -21,7 +21,7 @@ public class SuperObject {
         int row = 0;
 
         while (col < gp.maxScreenCol && row < gp.maxScreenRow) {
-            g2.drawImage(image, worldX, worldY, gp.titleSize, gp.titleSize, null);
+            g2.drawImage(image, worldX, worldY, gp.tileSize, gp.tileSize, null);
             col++;
 
             if (col == gp.maxScreenCol) {

@@ -8,12 +8,11 @@ import javax.imageio.ImageIO;
 import java.awt.Rectangle;
 
 public class Player extends Entity {
-    GamePanel gp;
     KeyHandler keyH;
     public int defeatedEnemies = 0;
 
     public Player(GamePanel gp, KeyHandler keyH) {
-        this.gp = gp;
+        super(gp);
         this.keyH = keyH;
 
         solidArea = new Rectangle(8, 18, 30, 30);
@@ -26,12 +25,18 @@ public class Player extends Entity {
 
     public void setDefaultValues() {
         // SPAWN PLAYER LOCATION
-        worldX = gp.titleSize * 13;
-        worldY = gp.titleSize * 9;
+        worldX = gp.tileSize * 13;
+        worldY = gp.tileSize * 9;
 
         speed = 4;
         // DEFAULT POSITION
         direction = "down";
+
+        // PLAYER STATUS
+        maxLife = 3;
+        life = maxLife;
+
+        gp.ui.gameFinished = false;
     }
 
     // LOAD PLAYER SPRITES
@@ -104,6 +109,11 @@ public class Player extends Entity {
                 spriteCounter = 0;
             }
         }
+
+        // GAME OVER IS HP IS 0
+        if (life <= 0) {
+            gp.gameState = gp.gameOverState;
+        }
     }
 
     // WHAT HAPPENS AFTER INTERACTION WITH OBJECT
@@ -115,9 +125,10 @@ public class Player extends Entity {
 
             switch (objectName) {
                 case "Enemy":
-                    defeatedEnemies++;
-                    gp.obj[i] = null;
+                    gp.gameState = gp.fightState;
                     gp.ui.showMessage("You defeated an enemy!");
+                    gp.obj[i] = null; // REMOVE
+                    defeatedEnemies++; // REMOVE
                     break;
                 case "Door":
                     if (defeatedEnemies == 3) {
@@ -171,6 +182,6 @@ public class Player extends Entity {
                 }
                 break;
         }
-        g2.drawImage(image, worldX, worldY, gp.titleSize, gp.titleSize, null);
+        g2.drawImage(image, worldX, worldY, gp.tileSize, gp.tileSize, null);
     }
 }
