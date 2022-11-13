@@ -8,8 +8,8 @@ public class OBJ_Heart extends SuperObject {
 public OBJ_Heart() {
         name = "Heart";
         try {
-            image = ImageIO.read(getClass().getResourceAsStream("res/heart.png"));
-            image2 = ImageIO.read(getClass().getResourceAsStream("res/heart-empty.png"));
+            image = ImageIO.read(getClass().getResourceAsStream("heart.png"));
+            image2 = ImageIO.read(getClass().getResourceAsStream("heart-empty.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
