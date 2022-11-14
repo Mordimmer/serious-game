@@ -6,10 +6,6 @@ import java.io.IOException;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import java.awt.Rectangle;
-import java.lang.Object;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 
 public class Player extends Entity {
     KeyHandler keyH;
@@ -83,7 +79,7 @@ public class Player extends Entity {
 
             // CHECK OBJECT COLLISION
             int objIndex = gp.cChecker.checkObject(this, true);
-            pickUpObject(objIndex);
+            interactWithObject(objIndex);
 
             // IF COLLISION IS FALSE, PLAYER CAN MOVE
             if (collisionOn == false) {
@@ -121,7 +117,7 @@ public class Player extends Entity {
     }
 
     // WHAT HAPPENS AFTER INTERACTION WITH OBJECT
-    public void pickUpObject(int i) {
+    public void interactWithObject(int i) {
 
         if (i != 999) {
 
