@@ -93,6 +93,27 @@ public class KeyHandler implements KeyListener {
             if (keyCode == KeyEvent.VK_R) {
                 gp.retry();
             }
+            if (keyCode == KeyEvent.VK_W) {
+                gp.ui.commandNum--;
+                if (gp.ui.commandNum < 0) {
+                    gp.ui.commandNum = 1;
+                }
+            }
+            if (keyCode == KeyEvent.VK_S) {
+                gp.ui.commandNum++;
+                if (gp.ui.commandNum > 1) {
+                    gp.ui.commandNum = 0;
+                }
+            }
+            if (keyCode == KeyEvent.VK_ENTER) {
+                if (gp.ui.commandNum == 0) {
+                    gp.gameState = gp.playState;
+                    gp.retry();
+                }
+                if (gp.ui.commandNum == 1) {
+                    gp.gameState = gp.titleState;
+                }
+            }
         }
         // FIGHT STATE
         else if (gp.gameState == gp.fightState) {
@@ -124,7 +145,7 @@ public class KeyHandler implements KeyListener {
         }
 
         // GAME OVER STATE
-        else if (gp.gameState == gp.gameOverState) {
+        else if (gp.gameState == gp.gameOverState || gp.gameState == gp.winState) {
             if (keyCode == KeyEvent.VK_W) {
                 gp.ui.commandNum--;
                 if (gp.ui.commandNum < 0) {

@@ -25,6 +25,7 @@ public class UI {
     double playTime = 0;
     DecimalFormat df = new DecimalFormat("#0.00");
 
+    //ADD NEW FONTS
     public UI(GamePanel gp) {
         this.gp = gp;
 
@@ -43,6 +44,7 @@ public class UI {
         messageOn = true;
     }
 
+    //DONE
     public void draw(Graphics2D g2) {
 
         this.g2 = g2;
@@ -76,9 +78,13 @@ public class UI {
         if (gp.gameState == gp.gameOverState) {
             drawGameOverScreen();
         }
+        if (gp.gameState == gp.winState) {
+            drawGameWinScreen();
+        }
 
     }
 
+    //TO DO ASAP
     public void drawFightScreen() {
         int x = gp.tileSize / 2;
         int y = gp.tileSize / 2;
@@ -107,6 +113,7 @@ public class UI {
         return "TODO";
     }
 
+    //DONE
     public void drawSubWindow(int x, int y, int width, int height) {
         Color c = new Color(104, 104, 104);
         g2.setColor(c);
@@ -119,6 +126,7 @@ public class UI {
         g2.drawRoundRect(x + 5, y + 5, width - 10, height - 10, 25, 25);
     }
 
+    //NEED SOME VISUAL IMPROVEMENTS AND NEW FONT
     public void drawTitleScreen() {
         // GAME TITLE
         g2.setColor(new Color(131, 165, 152));
@@ -158,6 +166,7 @@ public class UI {
         }
     }
 
+    //NEED SOME ADJUSTMENTS, NEED NEW FONT
     public void drawHelpScreen() {
         g2.setColor(new Color(131, 165, 152));
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
@@ -244,6 +253,7 @@ public class UI {
         g2.drawString(text, x, y);
     }
 
+    //DONE
     public void drawPlayerLife() {
 
         int x = 0;
@@ -268,9 +278,10 @@ public class UI {
 
     }
 
+    //NEED SOME IMPROVEMENTS, BUT SO FAR WORKS
     public void gameFinished() {
         if (gameFinished == true) {
-            gp.gameState = gp.gameOverState;
+            gp.gameState = gp.winState;
             g2.setFont(arial_80B);
             g2.setColor(Color.white);
             String text;
@@ -338,6 +349,42 @@ public class UI {
         }
     }
 
+    //DONE, EXCEPT NEW FONT
+    public void drawGameWinScreen() {
+        g2.setColor(new Color(0, 0, 0, 200));
+        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+
+        int x, y;
+        String text;
+        g2.setFont(arial_80B);
+        g2.setColor(Color.white);
+        text = "YOU WON!!!";
+        x = getXforCenteredText(text);
+        y = (gp.screenHeight - gp.tileSize / 2) / 2;
+        g2.drawString(text, x, y);
+
+        // RETRY
+        g2.setFont(arial_40);
+        g2.setColor(Color.white);
+        text = "Retry";
+        x = getXforCenteredText(text);
+        y = (gp.screenHeight - gp.tileSize / 2) - gp.tileSize * 2;
+        g2.drawString(text, x, y);
+        if (commandNum == 0) {
+            g2.drawString(">", x - 50, y);
+        }
+
+        // BACK TO TITLE SCREEN
+        text = "Quit";
+        x = getXforCenteredText(text);
+        y += gp.tileSize;
+        g2.drawString(text, x, y);
+        if (commandNum == 1) {
+            g2.drawString(">", x - 50, y);
+        }
+    }
+
+    //DONE, EXCEPT NEW FONT
     public void drawPauseScreen() {
         g2.setColor(new Color(0, 0, 0, 200));
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
@@ -348,8 +395,29 @@ public class UI {
         int y = gp.screenHeight / 2;
 
         g2.drawString(text, x, y);
+
+        // RETRY
+        g2.setFont(arial_40);
+        g2.setColor(Color.white);
+        text = "Retry";
+        x = getXforCenteredText(text);
+        y = (gp.screenHeight - gp.tileSize / 2) - gp.tileSize * 2;
+        g2.drawString(text, x, y);
+        if (commandNum == 0) {
+            g2.drawString(">", x - 50, y);
+        }
+
+        // BACK TO TITLE SCREEN
+        text = "Quit";
+        x = getXforCenteredText(text);
+        y += gp.tileSize;
+        g2.drawString(text, x, y);
+        if (commandNum == 1) {
+            g2.drawString(">", x - 50, y);
+        }
     }
 
+    //DONE, EXCEPT NEW FONT
     public void drawGameOverScreen() {
         g2.setColor(new Color(0, 0, 0, 200));
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
@@ -384,6 +452,7 @@ public class UI {
         }
     }
 
+    //DONE, EXCEPT NEW FONT
     public int getXforCenteredText(String text) {
         int length = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
         return gp.screenWidth / 2 - length / 2;
