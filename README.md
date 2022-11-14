@@ -33,4 +33,5 @@ Use WASD to move character around the map, defeat enemies ny solving math proble
 * Saving score to file 
 * Loading score from file and displaying leaderboard with top 10 scores and user's names and dates
 * Improve sprites and tiles
-* On screen controls
+* Display some keybindings on screen
+* Add OpenDyslexic font
