@@ -6,6 +6,10 @@ import java.io.IOException;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import java.awt.Rectangle;
+import java.lang.Object;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 
 public class Player extends Entity {
     KeyHandler keyH;
@@ -133,10 +137,7 @@ public class Player extends Entity {
                 case "Door":
                     if (defeatedEnemies == 3) {
                         gp.obj[i] = null;
-                        gp.ui.showMessage("You won!");
                         gp.ui.gameFinished = true;
-                        // close game window
-                        // System.exit(0);
                     } else {
                         if (defeatedEnemies == 2) {
                             gp.ui.showMessage("You need to defeat 1 more enemy!");

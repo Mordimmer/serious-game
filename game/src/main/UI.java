@@ -25,7 +25,7 @@ public class UI {
     double playTime = 0;
     DecimalFormat df = new DecimalFormat("#0.00");
 
-    //ADD NEW FONTS
+    // ADD NEW FONTS
     public UI(GamePanel gp) {
         this.gp = gp;
 
@@ -44,7 +44,7 @@ public class UI {
         messageOn = true;
     }
 
-    //DONE
+    // DONE
     public void draw(Graphics2D g2) {
 
         this.g2 = g2;
@@ -52,7 +52,7 @@ public class UI {
         g2.setColor(Color.white);
 
         if (gp.gameState == gp.playState || gp.gameState == gp.fightState) {
-            playTime += 0.01666;
+            playTime += 0.016;
         }
         // PLAY STATE
         if (gp.gameState == gp.titleState) {
@@ -84,7 +84,7 @@ public class UI {
 
     }
 
-    //TO DO ASAP
+    // TO DO ASAP
     public void drawFightScreen() {
         int x = gp.tileSize / 2;
         int y = gp.tileSize / 2;
@@ -113,7 +113,7 @@ public class UI {
         return "TODO";
     }
 
-    //DONE
+    // DONE
     public void drawSubWindow(int x, int y, int width, int height) {
         Color c = new Color(104, 104, 104);
         g2.setColor(c);
@@ -126,7 +126,7 @@ public class UI {
         g2.drawRoundRect(x + 5, y + 5, width - 10, height - 10, 25, 25);
     }
 
-    //NEED SOME VISUAL IMPROVEMENTS AND NEW FONT
+    // NEED SOME VISUAL IMPROVEMENTS AND NEW FONT
     public void drawTitleScreen() {
         // GAME TITLE
         g2.setColor(new Color(131, 165, 152));
@@ -166,7 +166,7 @@ public class UI {
         }
     }
 
-    //NEED SOME ADJUSTMENTS, NEED NEW FONT
+    // NEED SOME ADJUSTMENTS, NEED NEW FONT
     public void drawHelpScreen() {
         g2.setColor(new Color(131, 165, 152));
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
@@ -253,7 +253,7 @@ public class UI {
         g2.drawString(text, x, y);
     }
 
-    //DONE
+    // DONE
     public void drawPlayerLife() {
 
         int x = 0;
@@ -278,7 +278,7 @@ public class UI {
 
     }
 
-    //NEED SOME IMPROVEMENTS, BUT SO FAR WORKS
+    // NEED SOME IMPROVEMENTS, BUT SO FAR WORKS
     public void gameFinished() {
         if (gameFinished == true) {
             gp.gameState = gp.winState;
@@ -349,7 +349,7 @@ public class UI {
         }
     }
 
-    //DONE, EXCEPT NEW FONT
+    // DONE, EXCEPT NEW FONT
     public void drawGameWinScreen() {
         g2.setColor(new Color(0, 0, 0, 200));
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
@@ -361,6 +361,14 @@ public class UI {
         text = "YOU WON!!!";
         x = getXforCenteredText(text);
         y = (gp.screenHeight - gp.tileSize / 2) / 2;
+        g2.drawString(text, x, y);
+
+        // SHOW TIME
+        g2.setFont(arial_40);
+        g2.setColor(Color.white);
+        text = "Your time is " + df.format(playTime) + " seconds";
+        x = getXforCenteredText(text);
+        y = (gp.screenHeight - gp.tileSize / 2) / 2 + 80;
         g2.drawString(text, x, y);
 
         // RETRY
@@ -384,7 +392,7 @@ public class UI {
         }
     }
 
-    //DONE, EXCEPT NEW FONT
+    // DONE, EXCEPT NEW FONT
     public void drawPauseScreen() {
         g2.setColor(new Color(0, 0, 0, 200));
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
@@ -417,7 +425,7 @@ public class UI {
         }
     }
 
-    //DONE, EXCEPT NEW FONT
+    // DONE, EXCEPT NEW FONT
     public void drawGameOverScreen() {
         g2.setColor(new Color(0, 0, 0, 200));
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
@@ -452,7 +460,7 @@ public class UI {
         }
     }
 
-    //DONE, EXCEPT NEW FONT
+    // DONE, EXCEPT NEW FONT
     public int getXforCenteredText(String text) {
         int length = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
         return gp.screenWidth / 2 - length / 2;
