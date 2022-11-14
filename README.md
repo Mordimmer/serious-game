@@ -24,9 +24,10 @@ Use WASD to move character around the map, defeat enemies ny solving math proble
 * winning and losing
 * character movement
 * pause state
+* Generate equations
 
 ## To do
-* Generate equations
+* Inutp answer
 * Improve generating UI
 * More levels
 * Add some sort of points system

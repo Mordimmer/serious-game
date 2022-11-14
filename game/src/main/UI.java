@@ -20,18 +20,19 @@ public class UI {
     int messageCounter = 0;
     public boolean gameFinished = false;
     public int commandNum = 0;
-
-    //EQUATIONS
+ 
+    // EQUATIONS
     public double answer; // TODO
-    public int [] equationX = IntStream.rangeClosed(1, 10).toArray();
-    public int [] equationY = IntStream.rangeClosed(1, 10).toArray();
+    public int[] equationX = IntStream.rangeClosed(1, 10).toArray();
+    public int[] equationY = IntStream.rangeClosed(1, 10).toArray();
     public int equationXIndex = 0;
     public int equationYIndex = 0;
     public int equationNumberX = 0;
     public int equationNumberY = 0;
-    public String [] equationOperator = {"+", "-", "*", "/"}; // TODO
-    public int equationOperatorIndex=0;
-
+    public String[] equationOperator = { "+", "-", "*", "/" };
+    public int equationOperatorIndex = 0;
+    public double[] randAns;
+    public int [] answerOrder;
 
     double timeLeft = 10;
     double playTime = 0;
@@ -73,10 +74,39 @@ public class UI {
         if (gp.gameState == gp.playState) {
             timeLeft = 10;
 
-            //random number in range 1-10
-            equationYIndex = (int)(Math.random() * equationX.length );
-            equationXIndex = (int)(Math.random() * equationY.length );
-            equationOperatorIndex = (int)(Math.random() * equationOperator.length );
+            // Generating random numbers for the equation
+            equationYIndex = (int) (Math.random() * equationX.length);
+            equationXIndex = (int) (Math.random() * equationY.length);
+            equationOperatorIndex = (int) (Math.random() * equationOperator.length);
+            setAnswer();
+            randAns = new double[4];
+
+            // fill randAns with random integer numbers, where the answer is included, and no number is duplicated
+            randAns[0] = answer;
+            for (int i = 1; i < randAns.length; i++) {
+                randAns[i] = answer + (int) (Math.random() * (5+5))-5;
+                if (randAns[i] == answer) {
+                    randAns[i] = answer + (int) (Math.random() * (5+5))-5;
+                }
+                for (int j = 0; j < i; j++) {
+                    if (randAns[i] == randAns[j]) {
+                        randAns[i] = answer + (int) (Math.random() * (5+5))-5;
+                    }
+                }
+            }
+            
+            answerOrder = new int[4];
+            for(int i = 0; i < answerOrder.length; i++) {
+                answerOrder[i] = (int)(Math.random() * 4);
+                for(int j = 0; j < i; j++) {
+                    if(answerOrder[i] == answerOrder[j]) {
+                        answerOrder[i] = (int)(Math.random() * 4);
+                        j = 0;
+                    }
+                }
+            }
+
+
 
             drawPlayerLife();
             gameFinished();
@@ -114,14 +144,19 @@ public class UI {
         x += gp.tileSize;
         y += gp.tileSize;
 
-        setAnswer();
-
         g2.drawString("Solve this equasion!!!", x, y);
-        g2.drawString(equationX[equationXIndex] + equationOperator[equationOperatorIndex] + equationY[equationYIndex] + "=", x, y + gp.tileSize);
-        g2.drawString("Answer: " + answer, x, y + gp.tileSize * 2);
+        g2.drawString(
+                equationX[equationXIndex] + equationOperator[equationOperatorIndex] + equationY[equationYIndex] + "=",
+                x, y + gp.tileSize);
+
+        for (int i = 0; i < randAns.length; i++) {
+            g2.drawString(randAns[answerOrder[i]] + "", x+gp.tileSize/2, y + (i + 2) * gp.tileSize);
+        }
+
+        g2.drawString("Answer: " + answer, x, y + (randAns.length + 2) * gp.tileSize);
 
         timeLeft -= 0.01666;
-        g2.drawString("Time Left: " + df.format(timeLeft), x, y + gp.tileSize * 3);
+        // g2.drawString("Time Left: " + df.format(timeLeft), x, y + gp.tileSize * 3);
         if (timeLeft <= 0) {
             timeLeft = 10;
             gp.gameState = gp.playState;
@@ -143,16 +178,15 @@ public class UI {
                 answer = equationX[equationXIndex] * equationY[equationYIndex];
                 break;
             case "/":
-                if((double)equationX[equationXIndex] / (double)equationY[equationYIndex] % 1 == 0) {
+                if ((double) equationX[equationXIndex] / (double) equationY[equationYIndex] % 1 == 0) {
                     answer = equationX[equationXIndex] / equationY[equationYIndex];
                 } else {
                     equationOperatorIndex = 2;
-                    answer = (double)equationX[equationXIndex] * (double)equationY[equationYIndex];
+                    answer = (double) equationX[equationXIndex] * (double) equationY[equationYIndex];
                 }
-
-                break; 
-                }
+                break;
         }
+    }
 
     // DONE
     public void drawSubWindow(int x, int y, int width, int height) {
