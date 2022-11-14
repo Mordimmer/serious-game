@@ -117,9 +117,6 @@ public class KeyHandler implements KeyListener {
         }
         // FIGHT STATE
         else if (gp.gameState == gp.fightState) {
-            if (keyCode == KeyEvent.VK_ENTER) {
-                gp.gameState = gp.playState;
-            }
             if (keyCode == KeyEvent.VK_M) {
                 gp.gameState = gp.titleState;
             }
@@ -128,6 +125,21 @@ public class KeyHandler implements KeyListener {
             }
             if (keyCode == KeyEvent.VK_R) {
                 gp.retry();
+            }
+            if (keyCode == KeyEvent.VK_W) {
+                gp.ui.commandNum--;
+                if (gp.ui.commandNum < 0) {
+                    gp.ui.commandNum = gp.ui.randAns.length - 1;
+                }
+            }
+            if (keyCode == KeyEvent.VK_S) {
+                gp.ui.commandNum++;
+                if (gp.ui.commandNum > gp.ui.randAns.length -1) {
+                    gp.ui.commandNum = 0;
+                }
+            }
+            if (keyCode == KeyEvent.VK_ENTER) {
+                gp.ui.checkAnswer();
             }
         }
 

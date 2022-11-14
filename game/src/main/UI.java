@@ -119,6 +119,7 @@ public class UI {
         // FIGHT STATE
         if (gp.gameState == gp.fightState) {
             drawFightScreen();
+            drawPlayerLife();
         }
         // HELP STATE
         if (gp.gameState == gp.helpState) {
@@ -139,6 +140,7 @@ public class UI {
         int y = gp.tileSize / 2;
         int width = gp.screenWidth - gp.tileSize;
         int height = gp.screenHeight - gp.tileSize;
+        
         drawSubWindow(x, y, width, height);
 
         x += gp.tileSize;
@@ -150,17 +152,35 @@ public class UI {
                 x, y + gp.tileSize);
 
         for (int i = 0; i < randAns.length; i++) {
-            g2.drawString(randAns[answerOrder[i]] + "", x+gp.tileSize/2, y + (i + 2) * gp.tileSize);
+            g2.drawString(randAns[answerOrder[i]] + "", x+gp.tileSize, y + (i + 2) * gp.tileSize);
+            if(commandNum == i){
+                g2.drawString("> ", x, y + (i + 2) * gp.tileSize);
+            }
         }
 
         g2.drawString("Answer: " + answer, x, y + (randAns.length + 2) * gp.tileSize);
 
         timeLeft -= 0.01666;
-        // g2.drawString("Time Left: " + df.format(timeLeft), x, y + gp.tileSize * 3);
+        int length = (int) g2.getFontMetrics().getStringBounds("Time left: " + df.format(timeLeft), g2).getWidth();
+        g2.drawString("Time Left: " + df.format(timeLeft), gp.screenWidth - length - gp.tileSize - gp.tileSize/2, y);
         if (timeLeft <= 0) {
             timeLeft = 10;
             gp.gameState = gp.playState;
             gp.player.life--;
+        }
+
+        if (gp.player.life <= 0) {
+            gp.gameState = gp.gameOverState;
+        }
+    }
+
+    public void checkAnswer() {
+        if (randAns[answerOrder[commandNum]] == answer) {
+            gp.gameState = gp.playState;
+            timeLeft = 10;
+        } else {
+            gp.player.life--;
+            timeLeft = 10;
         }
     }
 

@@ -16,7 +16,7 @@ public class Player extends Entity {
         this.keyH = keyH;
 
         // hitbox
-        solidArea = new Rectangle(8, 28, 30, 20);
+        solidArea = new Rectangle(8, 18, 30, 30);
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
 
@@ -132,7 +132,7 @@ public class Player extends Entity {
                     defeatedEnemies++; // REMOVE
                     break;
                 case "Door":
-                    if (defeatedEnemies == 3) {
+                    if (defeatedEnemies >= 3) {
                         gp.obj[i] = null;
                         gp.ui.gameFinished = true;
                     } else {
