@@ -36,3 +36,6 @@ Use WASD to move character around the map, defeat enemies ny solving math proble
 * Improve sprites and tiles
 * Display some keybindings on screen
 * Add OpenDyslexic font
+
+## Issues
+* sometimes equation can repeat itself
