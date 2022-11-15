@@ -128,14 +128,38 @@ public class KeyHandler implements KeyListener {
             }
             if (keyCode == KeyEvent.VK_W) {
                 gp.ui.commandNum--;
-                if (gp.ui.commandNum < 0) {
-                    gp.ui.commandNum = gp.ui.randAns.length - 1;
+                if (gp.ui.commandNum == 1){
+                    gp.ui.commandNum = 3;
+                }
+                if (gp.ui.commandNum == -1) {
+                    gp.ui.commandNum = 1;
                 }
             }
             if (keyCode == KeyEvent.VK_S) {
                 gp.ui.commandNum++;
-                if (gp.ui.commandNum > gp.ui.randAns.length -1) {
+                if (gp.ui.commandNum == 2) {
                     gp.ui.commandNum = 0;
+                }
+                if(gp.ui.commandNum == 4){
+                    gp.ui.commandNum = 2;
+                }
+            }
+            if (keyCode == KeyEvent.VK_A) {
+                gp.ui.commandNum = gp.ui.commandNum-2;
+                if(gp.ui.commandNum == -1) {
+                    gp.ui.commandNum = 3;
+                }
+                if(gp.ui.commandNum == -2) {
+                    gp.ui.commandNum = 2;
+                }
+            }
+            if (keyCode == KeyEvent.VK_D) {
+                gp.ui.commandNum = gp.ui.commandNum+2;
+                if(gp.ui.commandNum == 4) {
+                    gp.ui.commandNum = 0;
+                }
+                if(gp.ui.commandNum == 5) {
+                    gp.ui.commandNum = 1;
                 }
             }
             if (keyCode == KeyEvent.VK_ENTER) {

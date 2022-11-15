@@ -20,9 +20,9 @@ public class UI {
     int messageCounter = 0;
     public boolean gameFinished = false;
     public int commandNum = 0;
- 
+
     // EQUATIONS
-    public double answer; // TODO
+    public double answer;
     public int[] equationX = IntStream.rangeClosed(1, 10).toArray();
     public int[] equationY = IntStream.rangeClosed(1, 10).toArray();
     public int equationXIndex = 0;
@@ -32,7 +32,7 @@ public class UI {
     public String[] equationOperator = { "+", "-", "*", "/" };
     public int equationOperatorIndex = 0;
     public double[] randAns;
-    public int [] answerOrder;
+    public int[] answerOrder;
 
     double timeLeft = 10;
     double playTime = 0;
@@ -83,19 +83,19 @@ public class UI {
             randAns = new double[4];
 
             // fill randAns with random integer numbers
-            for (int i = 0; i < randAns.length-1; i++) {
-                randAns[i] = answer + (int) (Math.random() * (5+5))-5;
+            for (int i = 0; i < randAns.length; i++) {
+                randAns[i] = answer + (int) (Math.random() * (5 + 5)) - 5;
                 if (randAns[i] == answer) {
-                    randAns[i] = answer + (int) (Math.random() * (5+5))-5;
+                    randAns[i] = answer + (int) (Math.random() * (5 + 5)) - 5;
                 }
                 for (int j = 0; j < i; j++) {
                     if (randAns[i] == randAns[j]) {
-                        randAns[i] = answer + (int) (Math.random() * (5+5))-5;
+                        randAns[i] = answer + (int) (Math.random() * (5 + 5)) - 5;
                     }
                 }
             }
 
-            //Shuffle randAns array
+            // Shuffle randAns array
             randAns[0] = answer;
             for (int i = 0; i < randAns.length; i++) {
                 int rand = (int) (Math.random() * randAns.length);
@@ -103,7 +103,7 @@ public class UI {
                 randAns[i] = randAns[rand];
                 randAns[rand] = temp;
             }
-            
+
             drawPlayerLife();
             gameFinished();
         }
@@ -136,7 +136,7 @@ public class UI {
         int y = gp.tileSize / 2;
         int width = gp.screenWidth - gp.tileSize;
         int height = gp.screenHeight - gp.tileSize;
-        
+
         drawSubWindow(x, y, width, height);
 
         x += gp.tileSize;
@@ -146,15 +146,23 @@ public class UI {
         g2.drawString(
                 equationX[equationXIndex] + equationOperator[equationOperatorIndex] + equationY[equationYIndex] + "=",
                 x, y + gp.tileSize);
-        
-        System.out.println("Displayed answer: "); 
+
+        System.out.println("Displayed answer: ");
         for (int i = 0; i < randAns.length; i++) {
-        System.out.println(+randAns[i]);
+            System.out.println(randAns[i]);
         }
         for (int i = 0; i < randAns.length; i++) {
-            g2.drawString((int)randAns[i] + "", x+gp.tileSize, y + (i + 2) * gp.tileSize);
-            if(commandNum == i){
-                g2.drawString("> ", x, y + (i + 2) * gp.tileSize);
+            if(i < 2){
+                g2.drawString((int) randAns[i] + "", 4 * gp.tileSize, gp.screenWidth - (6-i) * gp.tileSize);
+            if (commandNum == i) {
+                g2.drawString("> ", 3*gp.tileSize,gp.screenWidth - (6-i) * gp.tileSize );
+            }
+            }
+            else{
+                g2.drawString((int) randAns[i] + "", gp.screenWidth - (4)*gp.tileSize,gp.screenWidth - (8-i) * gp.tileSize);
+            if (commandNum == i) {
+                g2.drawString("> ", gp.screenWidth - (5)*gp.tileSize,gp.screenWidth - (8-i) * gp.tileSize);
+            }
             }
         }
 
@@ -162,7 +170,7 @@ public class UI {
 
         timeLeft -= 0.01666;
         int length = (int) g2.getFontMetrics().getStringBounds("Time left: " + df.format(timeLeft), g2).getWidth();
-        g2.drawString("Time Left: " + df.format(timeLeft), gp.screenWidth - length - gp.tileSize - gp.tileSize/2, y);
+        g2.drawString("Time Left: " + df.format(timeLeft), gp.screenWidth - length - gp.tileSize - gp.tileSize / 2, y);
         if (timeLeft <= 0) {
             timeLeft = 10;
             gp.gameState = gp.playState;
