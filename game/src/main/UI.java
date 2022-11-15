@@ -73,6 +73,7 @@ public class UI {
         }
         if (gp.gameState == gp.playState) {
             timeLeft = 10;
+            commandNum = 0;
 
             // Generating random numbers for the equation
             equationYIndex = (int) (Math.random() * equationX.length);
@@ -81,9 +82,8 @@ public class UI {
             setAnswer();
             randAns = new double[4];
 
-            // fill randAns with random integer numbers, where the answer is included, and no number is duplicated
-            randAns[0] = answer;
-            for (int i = 1; i < randAns.length; i++) {
+            // fill randAns with random integer numbers
+            for (int i = 0; i < randAns.length-1; i++) {
                 randAns[i] = answer + (int) (Math.random() * (5+5))-5;
                 if (randAns[i] == answer) {
                     randAns[i] = answer + (int) (Math.random() * (5+5))-5;
@@ -94,20 +94,16 @@ public class UI {
                     }
                 }
             }
-            
-            answerOrder = new int[4];
-            for(int i = 0; i < answerOrder.length; i++) {
-                answerOrder[i] = (int)(Math.random() * 4);
-                for(int j = 0; j < i; j++) {
-                    if(answerOrder[i] == answerOrder[j]) {
-                        answerOrder[i] = (int)(Math.random() * 4);
-                        j = 0;
-                    }
-                }
+
+            //Shuffle randAns array
+            randAns[0] = answer;
+            for (int i = 0; i < randAns.length; i++) {
+                int rand = (int) (Math.random() * randAns.length);
+                double temp = randAns[i];
+                randAns[i] = randAns[rand];
+                randAns[rand] = temp;
             }
-
-
-
+            
             drawPlayerLife();
             gameFinished();
         }
@@ -150,9 +146,13 @@ public class UI {
         g2.drawString(
                 equationX[equationXIndex] + equationOperator[equationOperatorIndex] + equationY[equationYIndex] + "=",
                 x, y + gp.tileSize);
-
+        
+        System.out.println("Displayed answer: "); 
         for (int i = 0; i < randAns.length; i++) {
-            g2.drawString(randAns[answerOrder[i]] + "", x+gp.tileSize, y + (i + 2) * gp.tileSize);
+        System.out.println(+randAns[i]);
+        }
+        for (int i = 0; i < randAns.length; i++) {
+            g2.drawString((int)randAns[i] + "", x+gp.tileSize, y + (i + 2) * gp.tileSize);
             if(commandNum == i){
                 g2.drawString("> ", x, y + (i + 2) * gp.tileSize);
             }
@@ -175,7 +175,7 @@ public class UI {
     }
 
     public void checkAnswer() {
-        if (randAns[answerOrder[commandNum]] == answer) {
+        if (randAns[commandNum] == answer) {
             gp.gameState = gp.playState;
             timeLeft = 10;
         } else {
