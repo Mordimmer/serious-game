@@ -218,9 +218,13 @@ public class UI {
 
     // DONE
     public void drawSubWindow(int x, int y, int width, int height) {
-        Color c = new Color(104, 104, 104);
+        Color c = new Color(40, 40, 40);
         g2.setColor(c);
         g2.fillRoundRect(x, y, width, height, 35, 35);
+
+        c = new Color(142, 192, 123);
+        g2.setColor(c);
+        g2.fillRect(x+5,y+3*gp.tileSize,width-5, height-6*gp.tileSize); 
 
         c = new Color(235, 219, 178);
         g2.setColor(c);
