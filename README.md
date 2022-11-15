@@ -38,5 +38,5 @@ Use WASD to move character around the map, defeat enemies ny solving math proble
 * Add OpenDyslexic font
 
 ## Issues
-* sometimes answers can repeat itself
+* ~~sometimes answers can repeat itself~~
 * weird hitbox on character
