@@ -16,7 +16,7 @@ public class Player extends Entity {
         this.keyH = keyH;
 
         // hitbox
-        solidArea = new Rectangle(8, 18, 30, 30);
+        solidArea = new Rectangle(18, 18, gp.tileSize-36, gp.tileSize - 18);
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
 
