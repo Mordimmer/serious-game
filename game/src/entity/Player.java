@@ -129,8 +129,8 @@ public class Player extends Entity {
                 case "Enemy":
                     gp.gameState = gp.fightState;
                     gp.ui.showMessage("You defeated an enemy!");
-                    gp.obj[gp.currentMap][i] = null; // REMOVE
-                    defeatedEnemies++; // REMOVE
+                    gp.obj[gp.currentMap][i] = null;
+                    defeatedEnemies++; 
                     break;
                 case "Door":
                     if (defeatedEnemies >= 3) {
@@ -138,7 +138,9 @@ public class Player extends Entity {
                         gp.currentMap++;
                         defeatedEnemies = 0;
                         if (gp.currentMap == 3) { // WIN AFTER 3rd MAP
-                            gp.ui.gameFinished = true;
+                            gp.ui.gameFinished = true; 
+                            gp.score.reachedEnd();
+                            gp.score.saveScore();
                         }
                     } else {
                         if (defeatedEnemies == 2) {

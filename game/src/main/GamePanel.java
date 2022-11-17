@@ -31,6 +31,7 @@ public class GamePanel extends JPanel implements Runnable {
     public CollisionChecker cChecker = new CollisionChecker(this);
     public AssetSetter aSetter = new AssetSetter(this);
     public UI ui = new UI(this);
+    public Score score = new Score(this);
 
     // PLAYER AND OBJECTS
     Player player = new Player(this, keyH);
@@ -68,6 +69,7 @@ public class GamePanel extends JPanel implements Runnable {
         player.defeatedEnemies = 0;
         ui.timeLeft = 10;
         currentMap = 0;
+        Score.score = 0;
     }
 
     public void startGameThread() {

@@ -74,6 +74,7 @@ public class UI {
             drawTitleScreen();
         }
         if (gp.gameState == gp.playState) {
+            Score.timeScore();
             timeLeft = 10;
             commandNum = 0;
 
@@ -118,6 +119,7 @@ public class UI {
         if (gp.gameState == gp.fightState) {
             drawFightScreen();
             drawPlayerLife();
+            Score.timeScore();
         }
         // HELP STATE
         if (gp.gameState == gp.helpState) {
@@ -188,9 +190,11 @@ public class UI {
         if (randAns[commandNum] == answer) {
             gp.gameState = gp.playState;
             timeLeft = 10;
+            gp.score.defeatedEnemy();
         } else {
             gp.player.life--;
             timeLeft = 10;
+            gp.score.undefeatedEnemy();
         }
     }
 
