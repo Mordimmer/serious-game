@@ -29,9 +29,9 @@ Use WASD to move character around the map, defeat enemies ny solving math proble
 
 ## To do
 * ~~Improve generating UI~~
-* More levels
-* Add some sort of points system
-* Saving score to file 
+* ~~More levels~~
+* ~~Add some sort of points system~~
+* ~~Saving score to file~~ 
 * Loading score from file and display leaderboard with top 10 scores and user's names and dates
 * Improve ~~sprites and~~ tiles
 * Display some keybindings on screen
