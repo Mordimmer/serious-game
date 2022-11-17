@@ -134,33 +134,37 @@ public class UI {
 
     // TO DO ASAP
     public void drawFightScreen() {
-        int x = gp.tileSize / 2;
-        int y = gp.tileSize / 2;
-        int width = gp.screenWidth - gp.tileSize;
-        int height = gp.screenHeight - gp.tileSize;
+        int x = 0;
+        int y = 0;
+        int width = gp.screenWidth;
+        int height = gp.screenHeight;
 
         drawSubWindow(x, y, width, height);
 
         x += gp.tileSize;
-        y += gp.tileSize;
+        y += 2 * gp.tileSize - gp.tileSize / 2;
 
         g2.drawString("Solve this equasion!!!", x, y);
         g2.drawString(
                 equationX[equationXIndex] + equationOperator[equationOperatorIndex] + equationY[equationYIndex] + "=",
                 x, y + gp.tileSize);
 
+        g2.drawString("Your answer: ", x, y + 12 * gp.tileSize);
         for (int i = 0; i < randAns.length; i++) {
-            if(i < 2){
-                g2.drawString((int) randAns[i] + "", 4 * gp.tileSize, gp.screenWidth - (6-i) * gp.tileSize);
-            if (commandNum == i) {
-                g2.drawString("> ", 3*gp.tileSize,gp.screenWidth - (6-i) * gp.tileSize );
-            }
-            }
-            else{
-                g2.drawString((int) randAns[i] + "", gp.screenWidth - (4)*gp.tileSize,gp.screenWidth - (8-i) * gp.tileSize);
-            if (commandNum == i) {
-                g2.drawString("> ", gp.screenWidth - (5)*gp.tileSize,gp.screenWidth - (8-i) * gp.tileSize);
-            }
+            if (i < 2) {
+                g2.drawString((int) randAns[i] + "", 6 * gp.tileSize,
+                        gp.screenWidth - (5 - i) * gp.tileSize - gp.tileSize / 2);
+                if (commandNum == i) {
+                    g2.drawString("> ", 5 * gp.tileSize + gp.tileSize / 2,
+                            gp.screenWidth - (5 - i) * gp.tileSize - gp.tileSize / 2);
+                }
+            } else {
+                g2.drawString((int) randAns[i] + "", gp.screenWidth - (4) * gp.tileSize,
+                        gp.screenWidth - (8 - i) * gp.tileSize + gp.tileSize / 2);
+                if (commandNum == i) {
+                    g2.drawString("> ", gp.screenWidth - (5) * gp.tileSize + gp.tileSize / 2,
+                            gp.screenWidth - (8 - i) * gp.tileSize + gp.tileSize / 2);
+                }
             }
         }
 
@@ -168,7 +172,7 @@ public class UI {
 
         timeLeft -= 0.01666;
         int length = (int) g2.getFontMetrics().getStringBounds("Time left: " + df.format(timeLeft), g2).getWidth();
-        g2.drawString("Time Left: " + df.format(timeLeft), gp.screenWidth - length - gp.tileSize - gp.tileSize / 2, y);
+        g2.drawString("Time Left: " + df.format(timeLeft), gp.screenWidth - length - gp.tileSize / 2, gp.tileSize / 2);
         if (timeLeft <= 0) {
             timeLeft = 10;
             gp.gameState = gp.playState;
@@ -218,17 +222,17 @@ public class UI {
     public void drawSubWindow(int x, int y, int width, int height) {
         Color c = new Color(40, 40, 40);
         g2.setColor(c);
-        g2.fillRoundRect(x, y, width, height, 35, 35);
+        g2.fillRoundRect(x, y, width, height, 0, 0);
 
         c = new Color(142, 192, 123);
         g2.setColor(c);
-        g2.fillRect(x+5,y+3*gp.tileSize,width-5, height-6*gp.tileSize); 
+        g2.fillRect(x + 5, y + 3 * gp.tileSize, width, height - 6 * gp.tileSize);
 
         c = new Color(235, 219, 178);
         g2.setColor(c);
         g2.setStroke(new BasicStroke(5));
 
-        //IMPORT IMAGES
+        // IMPORT IMAGES
         BufferedImage enemyFight = null, pcFight = null;
         try {
             enemyFight = ImageIO.read(getClass().getResourceAsStream("enemy-front.png"));
@@ -236,12 +240,14 @@ public class UI {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        
-        //DRAW ENEMY AND PLAYER FIGHTING SPRITES
-        g2.drawImage(enemyFight, gp.screenWidth - 6*gp.tileSize, y+height/2-4*gp.tileSize, gp.tileSize*4, gp.tileSize*4, null);
-        g2.drawImage(pcFight, 2*gp.tileSize, y+height/2-gp.tileSize/2, gp.tileSize*4, gp.tileSize*4, null);
 
-        g2.drawRoundRect(x + 5, y + 5, width - 10, height - 10, 25, 25);
+        // DRAW ENEMY AND PLAYER FIGHTING SPRITES
+        g2.drawImage(enemyFight, gp.screenWidth - 6 * gp.tileSize, y + height / 2 - 4 * gp.tileSize, gp.tileSize * 4,
+                gp.tileSize * 4, null);
+        g2.drawImage(pcFight, 2 * gp.tileSize, y + height / 2 - gp.tileSize / 2, gp.tileSize * 4, gp.tileSize * 4,
+                null);
+
+        // g2.drawRoundRect(x + 5, y + 5, width - 10, height - 10, 25, 25);
     }
 
     // NEED SOME VISUAL IMPROVEMENTS AND NEW FONT
@@ -446,12 +452,15 @@ public class UI {
         } else {
             g2.setFont(arial_40);
             g2.setColor(Color.white);
-            g2.drawString(gp.player.defeatedEnemies + "/3", gp.tileSize * 1, gp.tileSize * 2 - 10);
+            int length = (int) g2.getFontMetrics()
+                    .getStringBounds("Defeated enemies: " + gp.player.defeatedEnemies + "/3", g2).getWidth();
+            g2.drawString("Defeated enemies: " + gp.player.defeatedEnemies + "/3", gp.screenWidth - length,
+                    gp.screenHeight - gp.tileSize / 4);
 
-            //get playTime length
+            // get playTime length
             String playTimeStr = df.format(playTime);
-            int playTimeLength = (int) g2.getFontMetrics().getStringBounds(playTimeStr, g2).getWidth();
-            g2.drawString("Time: " + df.format(playTime), gp.screenWidth- playTimeLength-2*gp.tileSize, 36);
+            length = (int) g2.getFontMetrics().getStringBounds(playTimeStr, g2).getWidth();
+            g2.drawString("Time: " + df.format(playTime), gp.screenWidth - length - 2 * gp.tileSize, 36);
 
             if (messageOn == true) {
                 // CHANGE FONT SIZE

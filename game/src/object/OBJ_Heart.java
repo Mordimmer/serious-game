@@ -5,7 +5,7 @@ import java.io.IOException;
 
 public class OBJ_Heart extends SuperObject {
 
-public OBJ_Heart() {
+    public OBJ_Heart() {
         name = "Heart";
         try {
             image = ImageIO.read(getClass().getResourceAsStream("heart.png"));
@@ -15,5 +15,5 @@ public OBJ_Heart() {
         }
         collision = true;
     }
-    
+
 }

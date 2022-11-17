@@ -20,6 +20,8 @@ public class GamePanel extends JPanel implements Runnable {
     final int screenWidth = maxScreenCol * tileSize; // originaltileSize * scale * maxScreenCol = 16*4*20 = 1280
     final int screenHeight = maxScreenRow * tileSize; // originaltileSize * scale * maxScreenRow = 16*4*16 = 1024
 
+    public final int maxMap = 10;
+    public int currentMap = 0;
     // FPS
     final int FPS = 60;
 
@@ -32,7 +34,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     // PLAYER AND OBJECTS
     Player player = new Player(this, keyH);
-    public SuperObject obj[] = new SuperObject[10];
+    public SuperObject obj[][] = new SuperObject[maxMap][10];
 
     // GAME STATE
     public int gameState;
@@ -65,6 +67,7 @@ public class GamePanel extends JPanel implements Runnable {
         gameState = playState;
         player.defeatedEnemies = 0;
         ui.timeLeft = 10;
+        currentMap = 0;
     }
 
     public void startGameThread() {
@@ -96,12 +99,6 @@ public class GamePanel extends JPanel implements Runnable {
         if (gameState == playState) {
             player.update();
         }
-        if (gameState == pauseState) {
-
-        }
-        if (gameState == fightState) {
-
-        }
     }
 
     public void paintComponent(Graphics g) {
@@ -116,8 +113,8 @@ public class GamePanel extends JPanel implements Runnable {
 
             // DRAW OBJECTS
             for (int i = 0; i < obj.length; i++) {
-                if (obj[i] != null) {
-                    obj[i].draw(g2, this);
+                if (obj[currentMap][i] != null) {
+                    obj[currentMap][i].draw(g2, this);
                 }
             }
 

@@ -16,7 +16,7 @@ public class Player extends Entity {
         this.keyH = keyH;
 
         // hitbox
-        solidArea = new Rectangle(18, 18, gp.tileSize-36, gp.tileSize - 18);
+        solidArea = new Rectangle(18, 18, gp.tileSize - 36, gp.tileSize - 18);
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
 
@@ -37,6 +37,7 @@ public class Player extends Entity {
         maxLife = 3;
         life = maxLife;
 
+        gp.currentMap = 0;
         gp.ui.gameFinished = false;
     }
 
@@ -122,19 +123,23 @@ public class Player extends Entity {
 
         if (i != 999) {
 
-            String objectName = gp.obj[i].name;
+            String objectName = gp.obj[gp.currentMap][i].name;
 
             switch (objectName) {
                 case "Enemy":
                     gp.gameState = gp.fightState;
                     gp.ui.showMessage("You defeated an enemy!");
-                    gp.obj[i] = null; // REMOVE
+                    gp.obj[gp.currentMap][i] = null; // REMOVE
                     defeatedEnemies++; // REMOVE
                     break;
                 case "Door":
                     if (defeatedEnemies >= 3) {
-                        gp.obj[i] = null;
-                        gp.ui.gameFinished = true;
+                        gp.obj[gp.currentMap][i].collision = false;
+                        gp.currentMap++;
+                        defeatedEnemies = 0;
+                        if (gp.currentMap == 3) { // WIN AFTER 3rd MAP
+                            gp.ui.gameFinished = true;
+                        }
                     } else {
                         if (defeatedEnemies == 2) {
                             gp.ui.showMessage("You need to defeat 1 more enemy!");
