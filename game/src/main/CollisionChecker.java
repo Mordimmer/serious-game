@@ -1,7 +1,5 @@
 package main;
 
-import java.util.Currency;
-
 import entity.Entity;
 
 public class CollisionChecker {

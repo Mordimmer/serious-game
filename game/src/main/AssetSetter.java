@@ -55,5 +55,33 @@ public class AssetSetter {
         gp.obj[1][5] = new OBJ_Enemy();
         gp.obj[1][5].worldX = 4 * gp.tileSize;
         gp.obj[1][5].worldY = 1 * gp.tileSize;
+
+        gp.obj[2][0] = new OBJ_Door();
+        gp.obj[2][0].worldX = 1 * gp.tileSize;
+        gp.obj[2][0].worldY = 4 * gp.tileSize;
+
+        gp.obj[2][1] = new OBJ_Enemy();
+        gp.obj[2][1].worldX = (17 - 1) / 2 * gp.tileSize;
+        gp.obj[2][1].worldY = (4 - 1) * gp.tileSize;
+
+        gp.obj[2][2] = new OBJ_Enemy();
+        gp.obj[2][2].worldX = (37 - 1) / 2 * gp.tileSize;
+        gp.obj[2][2].worldY = (2 - 1) * gp.tileSize;
+
+        gp.obj[2][3] = new OBJ_Enemy();
+        gp.obj[2][3].worldX = (31 - 1) / 2 * gp.tileSize;
+        gp.obj[2][3].worldY = (12 - 1) * gp.tileSize;
+
+        gp.obj[2][4] = new OBJ_Enemy();
+        gp.obj[2][4].worldX = (15 - 1) / 2 * gp.tileSize;
+        gp.obj[2][4].worldY = (17 - 1) * gp.tileSize;
+
+        gp.obj[2][5] = new OBJ_Enemy();
+        gp.obj[2][5].worldX = (13 - 1) / 2 * gp.tileSize;
+        gp.obj[2][5].worldY = (15 - 1) * gp.tileSize;
+
+        gp.obj[2][6] = new OBJ_Enemy();
+        gp.obj[2][6].worldX = (11 - 1) / 2 * gp.tileSize;
+        gp.obj[2][6].worldY = (11 - 1) * gp.tileSize;
     }
 }
