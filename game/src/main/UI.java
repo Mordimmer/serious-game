@@ -9,6 +9,8 @@ import object.OBJ_Heart;
 import java.awt.BasicStroke;
 import java.awt.image.BufferedImage;
 import java.util.stream.*;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 
 public class UI {
     GamePanel gp;
@@ -147,10 +149,6 @@ public class UI {
                 equationX[equationXIndex] + equationOperator[equationOperatorIndex] + equationY[equationYIndex] + "=",
                 x, y + gp.tileSize);
 
-        System.out.println("Displayed answer: ");
-        for (int i = 0; i < randAns.length; i++) {
-            System.out.println(randAns[i]);
-        }
         for (int i = 0; i < randAns.length; i++) {
             if(i < 2){
                 g2.drawString((int) randAns[i] + "", 4 * gp.tileSize, gp.screenWidth - (6-i) * gp.tileSize);
@@ -229,6 +227,19 @@ public class UI {
         c = new Color(235, 219, 178);
         g2.setColor(c);
         g2.setStroke(new BasicStroke(5));
+
+        //IMPORT IMAGES
+        BufferedImage enemyFight = null, pcFight = null;
+        try {
+            enemyFight = ImageIO.read(getClass().getResourceAsStream("enemy-front.png"));
+            pcFight = ImageIO.read(getClass().getResourceAsStream("pc-front.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        //DRAW ENEMY AND PLAYER FIGHTING SPRITES
+        g2.drawImage(enemyFight, gp.screenWidth - 6*gp.tileSize, y+height/2-4*gp.tileSize, gp.tileSize*4, gp.tileSize*4, null);
+        g2.drawImage(pcFight, 2*gp.tileSize, y+height/2-gp.tileSize/2, gp.tileSize*4, gp.tileSize*4, null);
 
         g2.drawRoundRect(x + 5, y + 5, width - 10, height - 10, 25, 25);
     }
@@ -436,7 +447,11 @@ public class UI {
             g2.setFont(arial_40);
             g2.setColor(Color.white);
             g2.drawString(gp.player.defeatedEnemies + "/3", gp.tileSize * 1, gp.tileSize * 2 - 10);
-            g2.drawString("Time: " + df.format(playTime), gp.screenWidth - gp.tileSize * 5, 36);
+
+            //get playTime length
+            String playTimeStr = df.format(playTime);
+            int playTimeLength = (int) g2.getFontMetrics().getStringBounds(playTimeStr, g2).getWidth();
+            g2.drawString("Time: " + df.format(playTime), gp.screenWidth- playTimeLength-2*gp.tileSize, 36);
 
             if (messageOn == true) {
                 // CHANGE FONT SIZE
