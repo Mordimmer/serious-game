@@ -195,6 +195,10 @@ public class UI {
             gp.player.life--;
             timeLeft = 10;
             gp.score.undefeatedEnemy();
+            if(gp.player.life <= 0) {
+                gp.gameState = gp.gameOverState;
+                gp.score.saveScore();
+            }
         }
     }
 
