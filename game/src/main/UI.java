@@ -35,8 +35,7 @@ public class UI {
     public int equationOperatorIndex = 0;
     public double[] randAns;
     public int[] answerOrder;
-
-    double timeLeft = 10;
+    double timeLeft;
     double playTime = 0;
     DecimalFormat df = new DecimalFormat("#0.00");
 
@@ -75,7 +74,11 @@ public class UI {
         }
         if (gp.gameState == gp.playState) {
             Score.timeScore();
-            timeLeft = 10;
+            switch(gp.currentMap){
+                case 0: timeLeft = 10; break;
+                case 1: timeLeft = 7; break;
+                case 2: timeLeft = 5; break;
+            }
             commandNum = 0;
 
             // Generating random numbers for the equation
@@ -131,6 +134,9 @@ public class UI {
         if (gp.gameState == gp.winState) {
             drawGameWinScreen();
         }
+        if (gp.gameState == gp.leaderboardState) {
+            drawLeaderboardScreen();
+        }
 
     }
 
@@ -176,6 +182,7 @@ public class UI {
         int length = (int) g2.getFontMetrics().getStringBounds("Time left: " + df.format(timeLeft), g2).getWidth();
         g2.drawString("Time Left: " + df.format(timeLeft), gp.screenWidth - length - gp.tileSize / 2, gp.tileSize / 2);
         if (timeLeft <= 0) {
+
             timeLeft = 10;
             gp.gameState = gp.playState;
             gp.player.life--;
@@ -189,16 +196,20 @@ public class UI {
     public void checkAnswer() {
         if (randAns[commandNum] == answer) {
             gp.gameState = gp.playState;
-            timeLeft = 10;
+            switch(gp.currentMap){
+                case 0: timeLeft = 10; break;
+                case 1: timeLeft = 7; break;
+                case 2: timeLeft = 5; break;
+            }
             gp.score.defeatedEnemy();
         } else {
             gp.player.life--;
-            timeLeft = 10;
-            gp.score.undefeatedEnemy();
-            if(gp.player.life <= 0) {
-                gp.gameState = gp.gameOverState;
-                gp.score.saveScore();
+            switch(gp.currentMap){
+                case 0: timeLeft = 10; break;
+                case 1: timeLeft = 7; break;
+                case 2: timeLeft = 5; break;
             }
+            gp.score.undefeatedEnemy();
         }
     }
 
@@ -230,7 +241,7 @@ public class UI {
     public void drawSubWindow(int x, int y, int width, int height) {
         Color c = new Color(40, 40, 40);
         g2.setColor(c);
-        g2.fillRoundRect(x, y, width, height, 0, 0);
+        g2.fillRect(x, y, width, height);
 
         c = new Color(142, 192, 123);
         g2.setColor(c);
@@ -289,11 +300,19 @@ public class UI {
             g2.drawString(">", x - gp.tileSize, y);
         }
 
-        text = "QUIT";
+        text = "LEADERBOARD";
         x = getXforCenteredText(text);
         y = gp.tileSize * 8;
         g2.drawString(text, x, y);
         if (commandNum == 2) {
+            g2.drawString(">", x - gp.tileSize, y);
+        }
+
+        text = "QUIT";
+        x = getXforCenteredText(text);
+        y = gp.tileSize * 9;
+        g2.drawString(text, x, y);
+        if (commandNum == 3) {
             g2.drawString(">", x - gp.tileSize, y);
         }
     }
@@ -505,10 +524,24 @@ public class UI {
         // SHOW TIME
         g2.setFont(arial_40);
         g2.setColor(Color.white);
-        text = "Your time is " + df.format(playTime) + " seconds";
+        text = "Your time: " + df.format(playTime) + " seconds";
         x = getXforCenteredText(text);
         y = (gp.screenHeight - gp.tileSize / 2) / 2 + 80;
         g2.drawString(text, x, y);
+
+        // SHOW SCORE
+        g2.setFont(arial_40);
+        g2.setColor(Color.white);
+        text = "Your score: " + (int)(Score.score);
+        x = getXforCenteredText(text);
+        y = (gp.screenHeight - gp.tileSize / 2) / 2 + 120;
+        g2.drawString(text, x, y);
+        Score.loadScore();
+
+
+        if(Score.score > Score.highScore - 0.5 || Score.score > Score.highScore + 0.5){
+            g2.drawString("New high score!", x, y + 40);
+        }
 
         // RETRY
         g2.setFont(arial_40);
@@ -603,5 +636,29 @@ public class UI {
     public int getXforCenteredText(String text) {
         int length = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
         return gp.screenWidth / 2 - length / 2;
+    }
+    
+
+    public void drawLeaderboardScreen(){
+        g2.setColor(new Color(0, 0, 0));
+        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+        
+        g2.setFont(arial_80B);
+        g2.setColor(Color.white);
+        String text = "Top 10 scores: ";
+        int x = getXforCenteredText(text);
+        int y = 0 + 3*gp.tileSize;
+        g2.drawString(text, x, y);
+        y+=gp.tileSize;
+        gp.setFont(arial_40);
+        for(int i=0; i< 10; i++){
+            double scoreDouble = Double.parseDouble(Score.scoreLoad.get(i));
+
+            String s = i+1 +": "+ (int) scoreDouble;
+            y += gp.tileSize;
+            x = getXforCenteredText(s);
+            g2.drawString(s, x, y);
+
+        }
     }
 }

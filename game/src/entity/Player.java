@@ -115,6 +115,7 @@ public class Player extends Entity {
         // GAME OVER IS HP IS 0
         if (life <= 0) {
             gp.gameState = gp.gameOverState;
+            gp.score.saveScore();
         }
     }
 
@@ -137,7 +138,7 @@ public class Player extends Entity {
                         gp.obj[gp.currentMap][i].collision = false;
                         gp.currentMap++;
                         defeatedEnemies = 0;
-                        if (gp.currentMap == 3) { // WIN AFTER 3rd MAP
+                        if (gp.currentMap == 1) { // WIN AFTER 3rd MAP
                             gp.ui.gameFinished = true; 
                             gp.score.reachedEnd();
                             gp.score.saveScore();

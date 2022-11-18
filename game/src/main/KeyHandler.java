@@ -26,12 +26,12 @@ public class KeyHandler implements KeyListener {
             if (keyCode == KeyEvent.VK_W) {
                 gp.ui.commandNum--;
                 if (gp.ui.commandNum < 0) {
-                    gp.ui.commandNum = 2;
+                    gp.ui.commandNum = 3;
                 }
             }
             if (keyCode == KeyEvent.VK_S) {
                 gp.ui.commandNum++;
-                if (gp.ui.commandNum > 2) {
+                if (gp.ui.commandNum > 3) {
                     gp.ui.commandNum = 0;
                 }
             }
@@ -44,6 +44,10 @@ public class KeyHandler implements KeyListener {
                     gp.gameState = gp.helpState;
                 }
                 if (gp.ui.commandNum == 2) {
+                    gp.gameState = gp.leaderboardState;
+                    Score.loadScore();                            
+                }
+                if (gp.ui.commandNum == 3) {
                     System.exit(0);
                 }
             }
