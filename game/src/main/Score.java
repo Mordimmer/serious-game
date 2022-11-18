@@ -65,7 +65,7 @@ public class Score {
             BufferedReader br = new BufferedReader(new FileReader("score.txt"));
 
             String line = br.readLine();
-            while(line != null){
+            while (line != null) {
                 scoreLoad.add(line);
                 line = br.readLine();
             }

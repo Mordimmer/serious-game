@@ -74,10 +74,16 @@ public class UI {
         }
         if (gp.gameState == gp.playState) {
             Score.timeScore();
-            switch(gp.currentMap){
-                case 0: timeLeft = 10; break;
-                case 1: timeLeft = 7; break;
-                case 2: timeLeft = 5; break;
+            switch (gp.currentMap) {
+                case 0:
+                    timeLeft = 10;
+                    break;
+                case 1:
+                    timeLeft = 7;
+                    break;
+                case 2:
+                    timeLeft = 5;
+                    break;
             }
             commandNum = 0;
 
@@ -196,18 +202,30 @@ public class UI {
     public void checkAnswer() {
         if (randAns[commandNum] == answer) {
             gp.gameState = gp.playState;
-            switch(gp.currentMap){
-                case 0: timeLeft = 10; break;
-                case 1: timeLeft = 7; break;
-                case 2: timeLeft = 5; break;
+            switch (gp.currentMap) {
+                case 0:
+                    timeLeft = 10;
+                    break;
+                case 1:
+                    timeLeft = 7;
+                    break;
+                case 2:
+                    timeLeft = 5;
+                    break;
             }
             gp.score.defeatedEnemy();
         } else {
             gp.player.life--;
-            switch(gp.currentMap){
-                case 0: timeLeft = 10; break;
-                case 1: timeLeft = 7; break;
-                case 2: timeLeft = 5; break;
+            switch (gp.currentMap) {
+                case 0:
+                    timeLeft = 10;
+                    break;
+                case 1:
+                    timeLeft = 7;
+                    break;
+                case 2:
+                    timeLeft = 5;
+                    break;
             }
             gp.score.undefeatedEnemy();
         }
@@ -532,14 +550,13 @@ public class UI {
         // SHOW SCORE
         g2.setFont(arial_40);
         g2.setColor(Color.white);
-        text = "Your score: " + (int)(Score.score);
+        text = "Your score: " + (int) (Score.score);
         x = getXforCenteredText(text);
         y = (gp.screenHeight - gp.tileSize / 2) / 2 + 120;
         g2.drawString(text, x, y);
         Score.loadScore();
 
-
-        if(Score.score > Score.highScore - 0.5 || Score.score > Score.highScore + 0.5){
+        if (Score.score > Score.highScore - 0.5 || Score.score > Score.highScore + 0.5) {
             g2.drawString("New high score!", x, y + 40);
         }
 
@@ -637,24 +654,23 @@ public class UI {
         int length = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
         return gp.screenWidth / 2 - length / 2;
     }
-    
 
-    public void drawLeaderboardScreen(){
+    public void drawLeaderboardScreen() {
         g2.setColor(new Color(0, 0, 0));
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
-        
+
         g2.setFont(arial_80B);
         g2.setColor(Color.white);
         String text = "Top 10 scores: ";
         int x = getXforCenteredText(text);
-        int y = 0 + 3*gp.tileSize;
+        int y = 0 + 3 * gp.tileSize;
         g2.drawString(text, x, y);
-        y+=gp.tileSize;
+        y += gp.tileSize;
         gp.setFont(arial_40);
-        for(int i=0; i< 10; i++){
+        for (int i = 0; i < 10; i++) {
             double scoreDouble = Double.parseDouble(Score.scoreLoad.get(i));
 
-            String s = i+1 +": "+ (int) scoreDouble;
+            String s = i + 1 + ": " + (int) scoreDouble;
             y += gp.tileSize;
             x = getXforCenteredText(s);
             g2.drawString(s, x, y);
