@@ -33,12 +33,11 @@ public class Player extends Entity {
         // DEFAULT POSITION
         direction = "down";
 
-        // PLAYER STATUS
+        // PLAYER LIFE
         maxLife = 3;
         life = maxLife;
 
-        gp.currentMap = 0;
-        gp.ui.gameFinished = false;
+        defeatedEnemies = 0;
     }
 
     // LOAD PLAYER SPRITES
@@ -101,6 +100,7 @@ public class Player extends Entity {
                 }
             }
 
+            // DIFFERENT SPRITES EVERY 12 FRAMES
             spriteCounter++;
             if (spriteCounter > 12) {
                 if (spriteNum == 1) {
@@ -114,8 +114,8 @@ public class Player extends Entity {
 
         // GAME OVER IS HP IS 0
         if (life <= 0) {
-            gp.gameState = gp.gameOverState;
             gp.score.saveScore();
+            gp.gameState = gp.gameOverState;
         }
     }
 
@@ -157,7 +157,7 @@ public class Player extends Entity {
 
     public void draw(Graphics2D g2) {
         BufferedImage image = null;
-        // DIFRENT SPRITES
+        // CHANGING SPRITES
         switch (direction) {
             case "up":
                 if (spriteNum == 1) {

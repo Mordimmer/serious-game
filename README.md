@@ -2,7 +2,7 @@
 Serious game about math learning for children
 
 ## How to play
-Use WASD to move character around the map, defeat enemies ny solving math problems in given time. After defeating all enemies you will win. Soon I will try to add more level.
+Use WASD to move character around the map, defeat enemies by solving math problems in given time. After defeating 3 enemies you will be able to move to another room. After three rooms you will win. You will be able to see your score at the end of the game, depending on how many enemies you defeated and how long it took you to reach the end.
 
 ## Key mapping
 * W - move up
@@ -32,12 +32,14 @@ Use WASD to move character around the map, defeat enemies ny solving math proble
 * ~~More levels~~
 * ~~Add some sort of points system~~
 * ~~Saving score to file~~ 
-* Loading score from file and display leaderboard with top 10 scores and user's names and dates
+* ~~Loading score from file and display leaderboard with top 10~~
 * Improve ~~sprites and~~ tiles
-* Display some keybindings on screen
-* Add OpenDyslexic font
+* ~~Add OpenDyslexic font~~
+* Improve maps
+* Improve math problems
 
 ## Issues
 * ~~sometimes correct answer won't be displayed~~
 * sometimes correct answers can repeat itself
-* weird hitbox on character
+* weird hitbox while walking on the tile on the right side of the character
+* unefficient spaghetti code

@@ -40,15 +40,14 @@ public class Score {
 
     // REMOVE POINTS ACCORDING TO TIME
     public static void timeScore() {
-        score -= 0.05;
+        score -= 0.016;
         fileInput = String.valueOf(score);
+        System.out.println(score);
     }
 
     public void saveScore() {
 
         try {
-            // Write hi to file without overwriting
-
             FileWriter fw = new FileWriter("score.txt", true);
             BufferedWriter bw = new BufferedWriter(fw);
             bw.write(String.valueOf(fileInput));
@@ -62,6 +61,7 @@ public class Score {
 
     public static void loadScore() {
         try {
+            scoreLoad.clear();
             BufferedReader br = new BufferedReader(new FileReader("score.txt"));
 
             String line = br.readLine();
@@ -75,12 +75,9 @@ public class Score {
             });
 
             highScore = Double.parseDouble(scoreLoad.get(0));
-            System.out.println(highScore);
-            System.out.println(score);
             br.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 }

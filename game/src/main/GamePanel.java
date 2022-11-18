@@ -14,6 +14,7 @@ public class GamePanel extends JPanel implements Runnable {
     final int originaltileSize = 16; // 16x16 tile for a characters, enemies etc.
     final int scale = 4; // 4x scale
 
+    // SETTING UP RESOLUTION
     public final int tileSize = originaltileSize * scale; // 48x48 tile
     public final int maxScreenCol = 20;
     public final int maxScreenRow = 16;
@@ -22,6 +23,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public final int maxMap = 10;
     public int currentMap = 0;
+
     // FPS
     final int FPS = 60;
 
@@ -67,10 +69,11 @@ public class GamePanel extends JPanel implements Runnable {
         aSetter.setObject();
         ui.playTime = 0;
         gameState = playState;
-        player.defeatedEnemies = 0;
         ui.timeLeft = 10;
-        currentMap = 0;
         Score.score = 0;
+        ui.gameFinished = false;
+        currentMap = 0;
+        ui.commandNum = 0;
     }
 
     public void startGameThread() {
