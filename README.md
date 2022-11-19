@@ -35,7 +35,7 @@ Use WASD to move character around the map, defeat enemies by solving math proble
 * ~~Loading score from file and display leaderboard with top 10~~
 * Improve ~~sprites and~~ tiles
 * ~~Add OpenDyslexic font~~
-* Improve maps
+* ~~Improve maps~~
 * ~~Improve math problems~~
 
 ## Issues
