@@ -42,7 +42,7 @@ public class Score {
     public static void timeScore() {
         score -= 0.016;
         fileInput = String.valueOf(score);
-        System.out.println(score);
+        //System.out.println(score);
     }
 
     public void saveScore() {

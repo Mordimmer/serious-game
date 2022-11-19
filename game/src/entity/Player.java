@@ -26,8 +26,8 @@ public class Player extends Entity {
 
     public void setDefaultValues() {
         // SPAWN PLAYER LOCATION
-        worldX = gp.tileSize * 17;
-        worldY = gp.tileSize * 13;
+        worldX = gp.tileSize * 18;
+        worldY = gp.tileSize * 14-5;
 
         speed = 4;
         // DEFAULT POSITION

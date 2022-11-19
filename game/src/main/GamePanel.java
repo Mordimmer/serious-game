@@ -21,7 +21,7 @@ public class GamePanel extends JPanel implements Runnable {
     final int screenWidth = maxScreenCol * tileSize; // originaltileSize * scale * maxScreenCol = 16*4*20 = 1280
     final int screenHeight = maxScreenRow * tileSize; // originaltileSize * scale * maxScreenRow = 16*4*16 = 1024
 
-    public final int maxMap = 10;
+    public final int maxMap = 20;
     public int currentMap = 0;
 
     // FPS
@@ -37,7 +37,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     // PLAYER AND OBJECTS
     Player player = new Player(this, keyH);
-    public SuperObject obj[][] = new SuperObject[maxMap][10];
+    public SuperObject obj[][] = new SuperObject[maxMap][20];
 
     // GAME STATE
     public int gameState;
