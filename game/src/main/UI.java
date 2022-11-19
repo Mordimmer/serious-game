@@ -196,8 +196,9 @@ public class UI {
         g2.drawString("Answer: " + answer, x, y + (randAns.length + 2) * gp.tileSize);
 
         timeLeft -= 0.01666;
-        int length = (int) g2.getFontMetrics().getStringBounds("Time left: " + df.format(timeLeft), g2).getWidth();
-        g2.drawString("Time Left: " + df.format(timeLeft), gp.screenWidth - length - gp.tileSize / 5, gp.tileSize / 2);
+        y = gp.tileSize - gp.tileSize / 4;
+        x = gp.screenWidth - 6* gp.tileSize + gp.tileSize/3;
+        g2.drawString("Time Left: " + df.format(timeLeft), x, y);
         if (timeLeft <= 0) {
 
             timeLeft = 10;
@@ -272,7 +273,7 @@ public class UI {
     public void drawSubWindow(int x, int y, int width, int height) {
         Color c = new Color(40, 40, 40);
         g2.setColor(c);
-        g2.fillRect(x, y, width, height);
+        g2.fillRoundRect(x, y, width, height, 40, 40);
 
         c = new Color(142, 192, 123);
         g2.setColor(c);
@@ -590,13 +591,11 @@ public class UI {
             int x = gp.screenWidth - length;
             int y = gp.screenHeight - gp.tileSize / 4;
             g2.setColor(new Color(40, 40, 40));
-            g2.fillRoundRect(0, gp.screenHeight - gp.tileSize, gp.screenWidth, height, 40, 40);
+            g2.fillRoundRect(0, gp.screenHeight - gp.tileSize, gp.screenWidth, height-9, 40, 40);
             g2.setColor(new Color(235, 219, 178));
             g2.drawString("Defeated enemies: " + gp.player.defeatedEnemies + "/3", x, y);
 
             // get playTime length
-            length = (int) g2.getFontMetrics().getStringBounds("Time: " + df.format(playTime), g2)
-                    .getWidth();
             y = gp.tileSize - gp.tileSize / 4;
             x = gp.screenWidth - 4 * gp.tileSize;
             g2.setColor(new Color(40, 40, 40));
