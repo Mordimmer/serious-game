@@ -36,10 +36,10 @@ Use WASD to move character around the map, defeat enemies by solving math proble
 * Improve ~~sprites and~~ tiles
 * ~~Add OpenDyslexic font~~
 * Improve maps
-* Improve math problems
+* ~~Improve math problems~~
 
 ## Issues
 * ~~sometimes correct answer won't be displayed~~
-* sometimes correct answers can repeat itself
+* ~~sometimes correct answers can repeat itself~~
 * weird hitbox while walking on the tile on the right side of the character
 * unefficient spaghetti code

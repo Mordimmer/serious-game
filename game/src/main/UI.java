@@ -124,6 +124,16 @@ public class UI {
                 randAns[i] = randAns[rand];
                 randAns[rand] = temp;
             }
+
+            // Check if answers repeat and shuffle again
+            for (int i = 0; i < randAns.length; i++) {
+                for (int j = 0; j < i; j++) {
+                    if (randAns[i] == randAns[j]) {
+                        randAns[j] = answer + (int) (Math.random() * (5 + 5)) - 5;
+                    }
+                }
+            }
+
             gameFinished();
             drawPlayerLife();
 
