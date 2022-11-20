@@ -207,12 +207,20 @@ public class UI {
 
         timeLeft -= 0.01666;
         y = gp.tileSize - gp.tileSize / 4;
-        x = gp.screenWidth - 6* gp.tileSize + gp.tileSize/3;
+        x = gp.screenWidth - 6 * gp.tileSize + gp.tileSize / 3;
         g2.drawString("Time Left: " + df.format(timeLeft), x, y);
         if (timeLeft <= 0) {
-
-            timeLeft = 10;
-            gp.gameState = gp.playState;
+            switch (gp.currentMap) {
+                case 0:
+                    timeLeft = 10;
+                    break;
+                case 1:
+                    timeLeft = 7;
+                    break;
+                case 2:
+                    timeLeft = 5;
+                    break;
+            }
             gp.player.life--;
             gp.score.undefeatedEnemy();
         }
@@ -601,7 +609,7 @@ public class UI {
             int x = gp.screenWidth - length;
             int y = gp.screenHeight - gp.tileSize / 4;
             g2.setColor(new Color(40, 40, 40));
-            g2.fillRoundRect(0, gp.screenHeight - gp.tileSize, gp.screenWidth, height-9, 40, 40);
+            g2.fillRoundRect(0, gp.screenHeight - gp.tileSize, gp.screenWidth, height - 9, 40, 40);
             g2.setColor(new Color(235, 219, 178));
             g2.drawString("Defeated enemies: " + gp.player.defeatedEnemies + "/3", x, y);
 
