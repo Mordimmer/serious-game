@@ -147,7 +147,7 @@ public class Player extends Entity {
                         if (defeatedEnemies == 2) {
                             gp.ui.showMessage("You need to defeat 1 more enemy!");
                         } else {
-                            gp.ui.showMessage("You need to defeat " + (3 - defeatedEnemies) + " more enemies!");
+                            gp.ui.showMessage((3 - defeatedEnemies) + " more enemies!");
                         }
                     }
                     break;
