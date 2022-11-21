@@ -178,7 +178,7 @@ public class UI {
         x = gp.tileSize / 4;
         y = 2 * gp.tileSize - gp.tileSize / 4;
 
-        g2.drawString("Solve this equasion!!!", x, y);
+        g2.drawString("Solve this equation!!!", x, y);
         g2.drawString(
                 equationX[equationXIndex] + equationOperator[equationOperatorIndex] + equationY[equationYIndex] + "=",
                 x, y + gp.tileSize);
@@ -596,7 +596,7 @@ public class UI {
 
     }
 
-    // DONE; DUMB, AND UNEFFICIENT, BUT WORK FINE
+    // DONE; DUMB, AND INEFFICIENT, BUT WORK FINE
     public void gameFinished() {
         if (gameFinished == true) {
             gp.gameState = gp.winState;
@@ -613,7 +613,6 @@ public class UI {
             g2.setColor(new Color(235, 219, 178));
             g2.drawString("Defeated enemies: " + gp.player.defeatedEnemies + "/3", x, y);
 
-            // get playTime length
             y = gp.tileSize - gp.tileSize / 4;
             x = gp.screenWidth - 4 * gp.tileSize;
             g2.setColor(new Color(40, 40, 40));
