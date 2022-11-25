@@ -16,6 +16,11 @@ public class SuperObject {
     public int solidAreaDefaultX = 0;
     public int solidAreaDefaultY = 0;
 
+    
+    /** 
+     * @param g2
+     * @param gp
+     */
     public void draw(Graphics2D g2, GamePanel gp) {
         int col = 0;
         int row = 0;

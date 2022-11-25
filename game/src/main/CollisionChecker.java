@@ -10,6 +10,10 @@ public class CollisionChecker {
         this.gp = gp;
     }
 
+    
+    /** 
+     * @param entity
+     */
     public void checkTile(Entity entity) {
 
         int entityLeftWorldX = entity.worldX + entity.solidArea.x;
@@ -60,6 +64,12 @@ public class CollisionChecker {
         }
     }
 
+    
+    /** 
+     * @param entity
+     * @param player
+     * @return int
+     */
     public int checkObject(Entity entity, boolean player) {
 
         int index = 999;

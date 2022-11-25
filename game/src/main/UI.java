@@ -59,11 +59,19 @@ public class UI {
         heart_empty = heart.image2;
     }
 
+    
+    /** 
+     * @param text
+     */
     public void showMessage(String text) {
         message = text;
         messageOn = true;
     }
 
+    
+    /** 
+     * @param g2
+     */
     // MOSTLY CHECKING WHAT STATE THE GAME IS IN, WHAT TO DRAW, AND GENERATING
     // EQUATIONS
     public void draw(Graphics2D g2) {
@@ -801,6 +809,11 @@ public class UI {
         g2.drawString(text, x, y);
     }
 
+    
+    /** 
+     * @param text
+     * @return int
+     */
     public int getXforCenteredText(String text) {
         int length = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
         return gp.screenWidth / 2 - length / 2;

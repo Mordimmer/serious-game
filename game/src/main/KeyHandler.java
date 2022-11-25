@@ -270,11 +270,19 @@ public class KeyHandler implements KeyListener {
 
     }
 
+    
+    /** 
+     * @param e
+     */
     @Override
     public void keyTyped(KeyEvent e) {
 
     }
 
+    
+    /** 
+     * @param e
+     */
     @Override
     public void keyReleased(KeyEvent e) {
         int keyCode = e.getKeyCode();
