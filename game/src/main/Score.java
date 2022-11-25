@@ -19,33 +19,45 @@ public class Score {
         this.gp = gp;
     }
 
-    // IF PLAYER DEFEAT ENEMY, INCREASE SCORE BY 100
+    /**
+     * IF PLAYER DEFEAT ENEMY, INCREASE SCORE BY 100
+     */
     public void defeatedEnemy() {
         score += 100;
         fileInput = String.valueOf(score);
 
     }
 
-    // IF PLAYER MAKE A MISTAKE, DECREASE SCORE BY 100
+    /**
+     * IF PLAYER MAKE A MISTAKE, DECREASE SCORE BY 100
+     */
     public void undefeatedEnemy() {
         score -= 100;
         fileInput = String.valueOf(score);
     }
 
-    // IF PLAYER REACH THE END OF THE MAP, INCREASE SCORE BY 1000
+    /**
+     * IF PLAYER REACH THE END OF THE MAP, INCREASE SCORE BY 1000
+     */
     public void reachedEnd() {
         score += 1000;
         fileInput = String.valueOf(score);
     }
 
-    // REMOVE POINTS ACCORDING TO TIME
+    /**
+     * REMOVE POINTS ACCORDING TO TIME
+     */
     public static void timeScore() {
         score -= 0.016;
         fileInput = String.valueOf(score);
-        // System.out.println(score);
+        /**
+         * System.out.println(score);
+         */
     }
 
-    // SAVE SCORE TO FILE
+    /**
+     * SAVE SCORE TO FILE
+     */
     public void saveScore() {
 
         try {
@@ -60,7 +72,9 @@ public class Score {
         }
     }
 
-    // LOAD SCORE FROM FILE
+    /**
+     * LOAD SCORE FROM FILE
+     */
     public static void loadScore() {
         try {
             scoreLoad.clear();

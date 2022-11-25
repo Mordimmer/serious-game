@@ -41,7 +41,6 @@ public class UI {
     double playTime = 0;
     DecimalFormat df = new DecimalFormat("#0.00");
 
-    // ADD NEW FONTS
     public UI(GamePanel gp) {
         this.gp = gp;
 
@@ -77,7 +76,6 @@ public class UI {
         if (gp.gameState == gp.playState || gp.gameState == gp.fightState) {
             playTime += 0.016;
         }
-        // PLAY STATE
         if (gp.gameState == gp.titleState) {
             drawTitleScreen();
         }
@@ -166,7 +164,6 @@ public class UI {
 
     }
 
-    // DONE
     public void drawFightScreen() {
         int x = 0;
         int y = 0;
@@ -231,7 +228,6 @@ public class UI {
         }
     }
 
-    // DONE
     public void checkAnswer() {
         if (randAns[commandNum] == answer) {
             gp.gameState = gp.playState;
@@ -288,7 +284,9 @@ public class UI {
         }
     }
 
-    // DRAWING BASIC WINDOW
+    /**
+     * DRAWING BASIC WINDOW
+     */
     public void drawSubWindow(int x, int y, int width, int height) {
         Color c = new Color(40, 40, 40);
         g2.setColor(c);
@@ -317,7 +315,6 @@ public class UI {
                 null);
     }
 
-    // DONE
     public void drawTitleScreen() {
         // GAME TITLE
         g2.setColor(new Color(40, 40, 40));
@@ -366,7 +363,6 @@ public class UI {
         }
     }
 
-    // NEED BETER LAYOUT AND EXPLANATION
     public void drawHelpScreen() {
         g2.setColor(new Color(40, 40, 40));
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
@@ -442,8 +438,6 @@ public class UI {
         x = gp.screenWidth / 4 - length / 2;
         y += gp.tileSize / 2;
         g2.drawString(text, x, y);
-
-        // GAME OBJECTIVE
 
         text = "GAME OBJECTIVE";
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 32F));
@@ -572,7 +566,9 @@ public class UI {
         g2.drawString(text, x, y);
     }
 
-    // DRAWING PLAYER LIFE
+    /**
+     * DRAWING PLAYER LIFE
+     */
     public void drawPlayerLife() {
 
         int x = 0;
@@ -635,7 +631,6 @@ public class UI {
         }
     }
 
-    // DONE
     public void drawGameWinScreen() {
         g2.setColor(new Color(40, 40, 40));
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
@@ -690,7 +685,6 @@ public class UI {
         }
     }
 
-    // DONE
     public void drawPauseScreen() {
         g2.setColor(new Color(40, 40, 40, 230));
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
@@ -733,7 +727,6 @@ public class UI {
         }
     }
 
-    // DONE
     public void drawGameOverScreen() {
         g2.setColor(new Color(40, 40, 40));
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
@@ -769,7 +762,6 @@ public class UI {
         }
     }
 
-    // DONE
     public void drawLeaderboardScreen() {
         // DRAWING BACKGROUND
         g2.setColor(new Color(40, 40, 40));

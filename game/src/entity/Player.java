@@ -15,7 +15,9 @@ public class Player extends Entity {
         super(gp);
         this.keyH = keyH;
 
-        // hitbox
+        /**
+         * HITBOX
+         */
         solidArea = new Rectangle(18, 18, gp.tileSize - 36, gp.tileSize - 18);
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
@@ -24,24 +26,34 @@ public class Player extends Entity {
         getPlayerImage();
     }
 
-    // DEFAULT PLAYER VALUES
+    /**
+     * DEFAULT PLAYER VALUES
+     */
     public void setDefaultValues() {
-        // SPAWN PLAYER LOCATION
+        /**
+         * SPAWN PLAYER LOCATION
+         */
         worldX = gp.tileSize * 18;
         worldY = gp.tileSize * 14 - 5;
 
         speed = 4;
-        // DEFAULT POSITION
+        /**
+         * DEFAULT POSITION
+         */
         direction = "down";
 
-        // PLAYER LIFE
+        /**
+         * PLAYER LIFE
+         */
         maxLife = 3;
         life = maxLife;
 
         defeatedEnemies = 0;
     }
 
-    // LOAD PLAYER SPRITES
+    /**
+     * LOAD PLAYER SPRITES
+     */
     public void getPlayerImage() {
         try {
             down1 = ImageIO.read(getClass().getResourceAsStream("res/pc-front-1.png"));
@@ -58,9 +70,13 @@ public class Player extends Entity {
         }
     }
 
-    // PLAYER MOVEMENT AND COLLISION
+    /**
+     * PLAYER MOVEMENT AND COLLISION
+     */
     public void update() {
-        // PLAYER MOVEMENT
+        /**
+         * PLAYER MOVEMENT
+         */
         if (keyH.upPressed == true || keyH.downPressed == true || keyH.leftPressed == true
                 || keyH.rightPressed == true) {
             if (keyH.upPressed) {
@@ -76,15 +92,21 @@ public class Player extends Entity {
                 direction = "right";
             }
 
-            // CHECK TILE COLLISION
+            /**
+             * CHECK TILE COLLISION
+             */
             collisionOn = false;
             gp.cChecker.checkTile(this);
 
-            // CHECK OBJECT COLLISION
+            /**
+             * CHECK OBJECT COLLISION
+             */
             int objIndex = gp.cChecker.checkObject(this, true);
             interactWithObject(objIndex);
 
-            // IF COLLISION IS FALSE, PLAYER CAN MOVE
+            /**
+             * IF COLLISION IS FALSE, PLAYER CAN MOVE
+             */
             if (collisionOn == false) {
                 switch (direction) {
                     case "up":
@@ -102,7 +124,9 @@ public class Player extends Entity {
                 }
             }
 
-            // DIFFERENT SPRITES EVERY 12 FRAMES
+            /**
+             * DIFFERENT SPRITES EVERY 12 FRAMES
+             */
             spriteCounter++;
             if (spriteCounter > 12) {
                 if (spriteNum == 1) {
@@ -114,14 +138,18 @@ public class Player extends Entity {
             }
         }
 
-        // GAME OVER IS HP IS 0
+        /**
+         * GAME OVER IS HP IS 0
+         */
         if (life <= 0) {
             gp.score.saveScore();
             gp.gameState = gp.gameOverState;
         }
     }
 
-    // WHAT HAPPENS AFTER INTERACTION WITH OBJECT
+    /**
+     * WHAT HAPPENS AFTER INTERACTION WITH OBJECT
+     */
     public void interactWithObject(int i) {
 
         if (i != 999) {
@@ -140,7 +168,10 @@ public class Player extends Entity {
                         gp.obj[gp.currentMap][i].collision = false;
                         gp.currentMap++;
                         defeatedEnemies = 0;
-                        if (gp.currentMap == 3) { // WIN AFTER 3rd MAP
+                        if (gp.currentMap == 3) {
+                            /**
+                             * WIN AFTER 3rd MAP
+                             */
                             gp.ui.gameFinished = true;
                             gp.score.reachedEnd();
                             gp.score.saveScore();
@@ -157,10 +188,14 @@ public class Player extends Entity {
         }
     }
 
-    // DRAW PLAYER
+    /**
+     * DRAW PLAYER
+     */
     public void draw(Graphics2D g2) {
         BufferedImage image = null;
-        // CHANGING SPRITES
+        /**
+         * CHANGING SPRITES
+         */
         switch (direction) {
             case "up":
                 if (spriteNum == 1) {

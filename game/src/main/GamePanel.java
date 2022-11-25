@@ -10,37 +10,69 @@ import object.*;
 import tile.TileManager;
 
 public class GamePanel extends JPanel implements Runnable {
-    // SCREEN SETINGS
-    final int originaltileSize = 16; // 16x16 tile for a characters, enemies etc.
-    final int scale = 4; // 4x scale
+    /**
+     * SCREEN SETINGS
+     * 
+     * 
+     */
+    final int originaltileSize = 16;
+    /**
+     * 16x16 tile for a characters, enemies etc.
+     * 
+     * 
+     */
+    final int scale = 4;
+    /**
+     * 4x scale
+     */
 
-    // SETTING UP RESOLUTION
-    public final int tileSize = originaltileSize * scale; // 48x48 tile
+    /**
+     * SETTING UP RESOLUTION
+     */
+    public final int tileSize = originaltileSize * scale;
+    /**
+     * 48x48 tile
+     */
     public final int maxScreenCol = 20;
     public final int maxScreenRow = 16;
-    final int screenWidth = maxScreenCol * tileSize; // originaltileSize * scale * maxScreenCol = 16*4*20 = 1280
-    final int screenHeight = maxScreenRow * tileSize; // originaltileSize * scale * maxScreenRow = 16*4*16 = 1024
 
+    final int screenWidth = maxScreenCol * tileSize;
+    /**
+     * originaltileSize * scale * maxScreenCol = 16*4*20 = 1280
+     */
+    final int screenHeight = maxScreenRow * tileSize;
+    /**
+     * originaltileSize * scale * maxScreenRow = 16*4*16 = 1024
+     */
     public final int maxMap = 20;
     public int currentMap = 0;
 
-    // FPS
+    /**
+     * FPS
+     */
     final int FPS = 60;
 
     TileManager tileM = new TileManager(this);
+
     public KeyHandler keyH = new KeyHandler(this);
     Thread gameThread;
     public CollisionChecker cChecker = new CollisionChecker(this);
+
     public AssetSetter aSetter = new AssetSetter(this);
     public UI ui = new UI(this);
     public Score score = new Score(this);
 
-    // PLAYER AND OBJECTS
+    /**
+     * PLAYER AND OBJECTS
+     */
     Player player = new Player(this, keyH);
     public SuperObject obj[][] = new SuperObject[maxMap][20];
 
-    // GAME STATE
+    /**
+     * GAME STATE
+     */
     public int gameState;
+
     public final int titleState = 0;
     public final int playState = 1;
     public final int pauseState = 2;
@@ -50,22 +82,29 @@ public class GamePanel extends JPanel implements Runnable {
     public final int gameOverState = 6;
     public final int leaderboardState = 7;
 
-    // SETTING GamePanel
+    /**
+     * SETTING GamePanel
+     */
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.BLACK);
+
         this.setDoubleBuffered(true);
         this.addKeyListener(keyH);
         this.setFocusable(true);
     }
 
-    // SETTING UP GAME
+    /**
+     * SETTING UP GAME
+     */
     public void setupGame() {
         aSetter.setObject();
         gameState = titleState;
     }
 
-    // SETTING DEFAULT GAME VALUES
+    /**
+     * SETTING DEFAULT GAME VALUES
+     */
     public void retry() {
 
         player.setDefaultValues();
@@ -74,12 +113,15 @@ public class GamePanel extends JPanel implements Runnable {
         gameState = playState;
         ui.timeLeft = 10;
         Score.score = 0;
+
         ui.gameFinished = false;
         currentMap = 0;
         ui.commandNum = 0;
     }
 
-    // STARTING GAME
+    /**
+     * STARTING GAME
+     */
     public void startGameThread() {
         gameThread = new Thread(this);
         gameThread.start();
@@ -87,7 +129,10 @@ public class GamePanel extends JPanel implements Runnable {
 
     @Override
     public void run() {
-        double drawInterval = 1_000_000_000 / FPS; // 0.01666 seconds
+        double drawInterval = 1_000_000_000 / FPS;
+        /**
+         * 0.01666 seconds
+         */
         double delta = 0;
         long lastTime = System.nanoTime();
         long currentTime;
@@ -97,10 +142,12 @@ public class GamePanel extends JPanel implements Runnable {
             delta += (currentTime - lastTime) / drawInterval;
             lastTime = currentTime;
             if (delta >= 1) {
+
                 update();
                 repaint();
                 delta--;
             }
+
         }
     }
 
@@ -111,18 +158,24 @@ public class GamePanel extends JPanel implements Runnable {
         }
     }
 
-    // DRAWING GAME
+    /**
+     * DRAWING GAME
+     */
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
-        // TITLE SCREEN
+        /**
+         * TITLE SCREEN
+         */
         if (gameState == titleState) {
             ui.draw(g2);
         } else {
             tileM.draw(g2);
 
-            // DRAW OBJECTS
+            /**
+             * DRAW OBJECTS
+             */
             for (int i = 0; i < obj.length; i++) {
                 if (obj[currentMap][i] != null) {
                     obj[currentMap][i].draw(g2, this);

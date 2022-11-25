@@ -27,7 +27,9 @@ public class TileManager {
 
     }
 
-    // LOADING TILES IMAGES
+    /**
+     * LOADING TILES IMAGES
+     */
     public void getTileImage() {
         try {
 
@@ -48,7 +50,9 @@ public class TileManager {
         }
     }
 
-    // LOADING MAP FROM TEXT FILE
+    /**
+     * LOADING MAP FROM TEXT FILE
+     */
     public void loadMap(String filePath, int map) {
         try {
 
@@ -78,7 +82,7 @@ public class TileManager {
         }
     }
 
-    // DRAW MAP
+    /** DRAW MAP */
     public void draw(Graphics2D g2) {
         int col = 0;
         int row = 0;
