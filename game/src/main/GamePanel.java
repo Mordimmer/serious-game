@@ -50,6 +50,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int gameOverState = 6;
     public final int leaderboardState = 7;
 
+    // SETTING GamePanel
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.BLACK);
@@ -58,11 +59,13 @@ public class GamePanel extends JPanel implements Runnable {
         this.setFocusable(true);
     }
 
+    // SETTING UP GAME
     public void setupGame() {
         aSetter.setObject();
         gameState = titleState;
     }
 
+    // SETTING DEFAULT GAME VALUES
     public void retry() {
 
         player.setDefaultValues();
@@ -76,6 +79,7 @@ public class GamePanel extends JPanel implements Runnable {
         ui.commandNum = 0;
     }
 
+    // STARTING GAME
     public void startGameThread() {
         gameThread = new Thread(this);
         gameThread.start();
@@ -107,11 +111,12 @@ public class GamePanel extends JPanel implements Runnable {
         }
     }
 
+    // DRAWING GAME
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
-        // TITLE SCREEB
+        // TITLE SCREEN
         if (gameState == titleState) {
             ui.draw(g2);
         } else {

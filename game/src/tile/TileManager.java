@@ -13,6 +13,7 @@ public class TileManager {
     public Tile[] tile;
     public int mapTileNum[][][];
 
+    // CONSTRUCTOR
     public TileManager(GamePanel gp) {
 
         this.gp = gp;
@@ -26,6 +27,7 @@ public class TileManager {
 
     }
 
+    // LOADING TILES IMAGES
     public void getTileImage() {
         try {
 
@@ -46,6 +48,7 @@ public class TileManager {
         }
     }
 
+    // LOADING MAP FROM TEXT FILE
     public void loadMap(String filePath, int map) {
         try {
 

@@ -11,9 +11,10 @@ public class AssetSetter {
         this.gp = gp;
     }
 
+    // LOADING OBJECTS
     public void setObject() {
 
-        //MAP 0
+        // MAP 0
         int mapNum = 0;
         gp.obj[mapNum][0] = new OBJ_Door();
         gp.obj[mapNum][0].worldX = 1 * gp.tileSize;
@@ -57,13 +58,13 @@ public class AssetSetter {
 
         gp.obj[mapNum][11] = new OBJ_Enemy();
         gp.obj[mapNum][11].worldX = 7 * gp.tileSize;
-       gp.obj[mapNum][11].worldY = 8 * gp.tileSize;
- 
+        gp.obj[mapNum][11].worldY = 8 * gp.tileSize;
+
         gp.obj[mapNum][12] = new OBJ_Enemy();
         gp.obj[mapNum][12].worldX = 3 * gp.tileSize;
         gp.obj[mapNum][12].worldY = 9 * gp.tileSize;
 
-        //MAP 1
+        // MAP 1
         mapNum = 1;
         gp.obj[mapNum][0] = new OBJ_Door();
         gp.obj[mapNum][0].worldX = 18 * gp.tileSize;
@@ -89,7 +90,6 @@ public class AssetSetter {
         gp.obj[mapNum][5].worldX = 13 * gp.tileSize;
         gp.obj[mapNum][5].worldY = 5 * gp.tileSize;
 
-
         gp.obj[mapNum][6] = new OBJ_Enemy();
         gp.obj[mapNum][6].worldX = 18 * gp.tileSize;
         gp.obj[mapNum][6].worldY = 12 * gp.tileSize;
@@ -105,7 +105,6 @@ public class AssetSetter {
         gp.obj[mapNum][9] = new OBJ_Enemy();
         gp.obj[mapNum][9].worldX = 13 * gp.tileSize;
         gp.obj[mapNum][9].worldY = 7 * gp.tileSize;
-
 
         gp.obj[mapNum][10] = new OBJ_Enemy();
         gp.obj[mapNum][10].worldX = 1 * gp.tileSize;
@@ -126,9 +125,6 @@ public class AssetSetter {
         gp.obj[mapNum][15] = new OBJ_Enemy();
         gp.obj[mapNum][15].worldX = 11 * gp.tileSize;
         gp.obj[mapNum][15].worldY = 1 * gp.tileSize;
-
-
-        
 
         // MAP 2
         mapNum = 2;

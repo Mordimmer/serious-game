@@ -42,9 +42,10 @@ public class Score {
     public static void timeScore() {
         score -= 0.016;
         fileInput = String.valueOf(score);
-        //System.out.println(score);
+        // System.out.println(score);
     }
 
+    // SAVE SCORE TO FILE
     public void saveScore() {
 
         try {
@@ -59,6 +60,7 @@ public class Score {
         }
     }
 
+    // LOAD SCORE FROM FILE
     public static void loadScore() {
         try {
             scoreLoad.clear();

@@ -11,6 +11,7 @@ public class KeyHandler implements KeyListener {
         this.gp = gp;
     }
 
+    // SETTING KEYBOARD INPUTS
     public void keyPressed(KeyEvent e) {
         int keyCode = e.getKeyCode();
 

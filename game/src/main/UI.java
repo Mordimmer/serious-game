@@ -65,7 +65,8 @@ public class UI {
         messageOn = true;
     }
 
-    // DONE
+    // MOSTLY CHECKING WHAT STATE THE GAME IS IN, WHAT TO DRAW, AND GENERATING
+    // EQUATIONS
     public void draw(Graphics2D g2) {
 
         this.g2 = g2;
@@ -96,14 +97,14 @@ public class UI {
             }
             commandNum = 0;
 
-            // Generating random numbers for the equation
+            // GENERATING RANDOM NUMBERS FOR THE EQUATION
             equationYIndex = (int) (Math.random() * equationX.length);
             equationXIndex = (int) (Math.random() * equationY.length);
             equationOperatorIndex = (int) (Math.random() * equationOperator.length);
             setAnswer();
             randAns = new double[4];
 
-            // fill randAns with random integer numbers
+            // FILL RANDANS WITH RANDOM INTEGER NUMBERS
             for (int i = 0; i < randAns.length; i++) {
                 randAns[i] = answer + (int) (Math.random() * (5 + 5)) - 5;
                 if (randAns[i] == answer) {
@@ -116,7 +117,7 @@ public class UI {
                 }
             }
 
-            // Shuffle randAns array
+            // SHUFFLE ARRAY
             randAns[0] = answer;
             for (int i = 0; i < randAns.length; i++) {
                 int rand = (int) (Math.random() * randAns.length);
@@ -125,7 +126,7 @@ public class UI {
                 randAns[rand] = temp;
             }
 
-            // Check if answers repeat and shuffle again
+            // CHECK IF ANSWERS REPEAT AND SHUFFLE AGAIN
             for (int i = 0; i < randAns.length; i++) {
                 for (int j = 0; j < i; j++) {
                     if (randAns[i] == randAns[j]) {
@@ -263,7 +264,7 @@ public class UI {
         }
     }
 
-    // DONE
+    // SOLVIN THE EQUATION AND SETTING THE ANSWER
     public void setAnswer() {
 
         switch (equationOperator[equationOperatorIndex]) {
@@ -287,7 +288,7 @@ public class UI {
         }
     }
 
-    // DONE
+    // DRAWING BASIC WINDOW
     public void drawSubWindow(int x, int y, int width, int height) {
         Color c = new Color(40, 40, 40);
         g2.setColor(c);
@@ -571,7 +572,7 @@ public class UI {
         g2.drawString(text, x, y);
     }
 
-    // DONE
+    // DRAWING PLAYER LIFE
     public void drawPlayerLife() {
 
         int x = 0;

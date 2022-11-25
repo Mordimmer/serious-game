@@ -98,13 +98,13 @@ Wyniki gracza przechowywane są w pliku /score.txt, co pozwala na łatwe odczyta
 
 
 ```java
-    public void drawTitleScreen() {
+public void drawTitleScreen() {
         // GAME TITLE
         g2.setColor(new Color(40, 40, 40));
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
         g2.setFont(OpenDyslexic);
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 64F));
-        String text = "PLACEHOLDER";
+        String text = "LEGEND OF THE MATH TRAVELER";
         int x = getXforCenteredText(text);
         int y = gp.tileSize * 3;
         g2.setColor(new Color(211, 134, 155));

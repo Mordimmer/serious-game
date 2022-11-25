@@ -1,0 +1,43 @@
+Date : 2022-11-25 21:27:50
+Directory : c:\Users\kamil\Desktop\serious-game\game\src
+Total : 15 files,  1640 codes, 137 comments, 300 blanks, all 2077 lines
+
+Languages
++----------+------------+------------+------------+------------+------------+
+| language | files      | code       | comment    | blank      | total      |
++----------+------------+------------+------------+------------+------------+
+| Java     |         15 |      1,640 |        137 |        300 |      2,077 |
++----------+------------+------------+------------+------------+------------+
+
+Directories
++-------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                    | files      | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                       |         15 |      1,640 |        137 |        300 |      2,077 |
+| entity                                                                  |          2 |        179 |         17 |         30 |        226 |
+| main                                                                    |          7 |      1,311 |        116 |        225 |      1,652 |
+| object                                                                  |          4 |         68 |          0 |         18 |         86 |
+| tile                                                                    |          2 |         82 |          4 |         27 |        113 |
++-------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| filename                                                                | language | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| c:\Users\kamil\Desktop\serious-game\game\src\entity\Entity.java         | Java     |         21 |          1 |          7 |         29 |
+| c:\Users\kamil\Desktop\serious-game\game\src\entity\Player.java         | Java     |        158 |         16 |         23 |        197 |
+| c:\Users\kamil\Desktop\serious-game\game\src\main\AssetSetter.java      | Java     |        116 |          4 |         40 |        160 |
+| c:\Users\kamil\Desktop\serious-game\game\src\main\CollisionChecker.java | Java     |        117 |          0 |         18 |        135 |
+| c:\Users\kamil\Desktop\serious-game\game\src\main\GamePanel.java        | Java     |        104 |         12 |         23 |        139 |
+| c:\Users\kamil\Desktop\serious-game\game\src\main\KeyHandler.java       | Java     |        231 |         46 |         17 |        294 |
+| c:\Users\kamil\Desktop\serious-game\game\src\main\Main.java             | Java     |         17 |          0 |          6 |         23 |
+| c:\Users\kamil\Desktop\serious-game\game\src\main\Score.java            | Java     |         62 |          7 |         16 |         85 |
+| c:\Users\kamil\Desktop\serious-game\game\src\main\UI.java               | Java     |        664 |         47 |        105 |        816 |
+| c:\Users\kamil\Desktop\serious-game\game\src\object\OBJ_Door.java       | Java     |         14 |          0 |          3 |         17 |
+| c:\Users\kamil\Desktop\serious-game\game\src\object\OBJ_Enemy.java      | Java     |         13 |          0 |          3 |         16 |
+| c:\Users\kamil\Desktop\serious-game\game\src\object\OBJ_Heart.java      | Java     |         15 |          0 |          5 |         20 |
+| c:\Users\kamil\Desktop\serious-game\game\src\object\SuperObject.java    | Java     |         26 |          0 |          7 |         33 |
+| c:\Users\kamil\Desktop\serious-game\game\src\tile\Tile.java             | Java     |          6 |          0 |          3 |          9 |
+| c:\Users\kamil\Desktop\serious-game\game\src\tile\TileManager.java      | Java     |         76 |          4 |         24 |        104 |
+| Total                                                                   |          |      1,640 |        137 |        300 |      2,077 |
++-------------------------------------------------------------------------+----------+------------+------------+------------+------------+

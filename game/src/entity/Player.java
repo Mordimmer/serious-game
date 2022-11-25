@@ -24,10 +24,11 @@ public class Player extends Entity {
         getPlayerImage();
     }
 
+    // DEFAULT PLAYER VALUES
     public void setDefaultValues() {
         // SPAWN PLAYER LOCATION
         worldX = gp.tileSize * 18;
-        worldY = gp.tileSize * 14-5;
+        worldY = gp.tileSize * 14 - 5;
 
         speed = 4;
         // DEFAULT POSITION
@@ -57,6 +58,7 @@ public class Player extends Entity {
         }
     }
 
+    // PLAYER MOVEMENT AND COLLISION
     public void update() {
         // PLAYER MOVEMENT
         if (keyH.upPressed == true || keyH.downPressed == true || keyH.leftPressed == true
@@ -155,6 +157,7 @@ public class Player extends Entity {
         }
     }
 
+    // DRAW PLAYER
     public void draw(Graphics2D g2) {
         BufferedImage image = null;
         // CHANGING SPRITES
