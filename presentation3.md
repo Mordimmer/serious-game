@@ -94,55 +94,71 @@ Wyniki gracza przechowywane są w pliku /score.txt, co pozwala na łatwe odczyta
 
 ---
 
-# Funkcja rysująca ekran początkowy gry
+# Funkcja generująca równanie matematyczne
 
 
 ```java
-public void drawTitleScreen() {
-        // GAME TITLE
-        g2.setColor(new Color(40, 40, 40));
-        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
-        g2.setFont(OpenDyslexic);
-        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 64F));
-        String text = "LEGEND OF THE MATH TRAVELER";
-        int x = getXforCenteredText(text);
-        int y = gp.tileSize * 3;
-        g2.setColor(new Color(211, 134, 155));
-        g2.drawString(text, x, y);
+public void randomEquation() {
+        // GENERATING RANDOM NUMBERS FOR THE EQUATION
+        equationYIndex = (int) (Math.random() * equationX.length);
+        equationXIndex = (int) (Math.random() * equationY.length);
+        equationOperatorIndex = (int) (Math.random() * equationOperator.length);
+        setAnswer();
+        randAns = new double[4];
 
-        // MENU
-        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 42F));
-        text = "NEW GAME";
-        x = getXforCenteredText(text);
-        y = gp.tileSize * 6;
-        g2.setColor(new Color(235, 219, 178));
-        g2.drawString(text, x, y);
-        if (commandNum == 0) {
-            g2.drawString(">", x - gp.tileSize, y);
+        // FILL RANDANS WITH RANDOM INTEGER NUMBERS
+        for (int i = 0; i < randAns.length; i++) {
+            randAns[i] = answer + (int) (Math.random() * (5 + 5)) - 5;
+            if (randAns[i] == answer) {
+                randAns[i] = answer + (int) (Math.random() * (5 + 5)) - 5;
+            }
+            for (int j = 0; j < i; j++) {
+                if (randAns[i] == randAns[j]) {
+                    randAns[i] = answer + (int) (Math.random() * (5 + 5)) - 5;
+                }
+            }
         }
 
-        text = "HOW TO PLAY";
-        x = getXforCenteredText(text);
-        y = gp.tileSize * 7;
-        g2.drawString(text, x, y);
-        if (commandNum == 1) {
-            g2.drawString(">", x - gp.tileSize, y);
+        // SHUFFLE ARRAY
+        randAns[0] = answer;
+        for (int i = 0; i < randAns.length; i++) {
+            int rand = (int) (Math.random() * randAns.length);
+            double temp = randAns[i];
+            randAns[i] = randAns[rand];
+            randAns[rand] = temp;
         }
 
-        text = "LEADERBOARD";
-        x = getXforCenteredText(text);
-        y = gp.tileSize * 8;
-        g2.drawString(text, x, y);
-        if (commandNum == 2) {
-            g2.drawString(">", x - gp.tileSize, y);
+        // CHECK IF ANSWERS REPEAT AND SHUFFLE AGAIN
+        for (int i = 0; i < randAns.length; i++) {
+            for (int j = 0; j < i; j++) {
+                if (randAns[i] == randAns[j]) {
+                    randAns[j] = answer + (int) (Math.random() * (5 + 5)) - 5;
+                }
+            }
         }
+    }
 
-        text = "QUIT";
-        x = getXforCenteredText(text);
-        y = gp.tileSize * 9;
-        g2.drawString(text, x, y);
-        if (commandNum == 3) {
-            g2.drawString(">", x - gp.tileSize, y);
+    // SOLVIN THE EQUATION AND SETTING THE ANSWER
+    public void setAnswer() {
+
+        switch (equationOperator[equationOperatorIndex]) {
+            case "+":
+                answer = equationX[equationXIndex] + equationY[equationYIndex];
+                break;
+            case "-":
+                answer = equationX[equationXIndex] - equationY[equationYIndex];
+                break;
+            case "*":
+                answer = equationX[equationXIndex] * equationY[equationYIndex];
+                break;
+            case "/":
+                if ((double) equationX[equationXIndex] / (double) equationY[equationYIndex] % 1 == 0) {
+                    answer = equationX[equationXIndex] / equationY[equationYIndex];
+                } else {
+                    equationOperatorIndex = 2;
+                    answer = (double) equationX[equationXIndex] * (double) equationY[equationYIndex];
+                }
+                break;
         }
     }
 ```
@@ -151,4 +167,4 @@ public void drawTitleScreen() {
 
 # Efekt funkcji
 
-![title-screen](Pictures/title-screen.png)
+![title-screen](Pictures/final-fight.png)

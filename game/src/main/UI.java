@@ -59,8 +59,7 @@ public class UI {
         heart_empty = heart.image2;
     }
 
-    
-    /** 
+    /**
      * @param text
      */
     public void showMessage(String text) {
@@ -68,8 +67,7 @@ public class UI {
         messageOn = true;
     }
 
-    
-    /** 
+    /**
      * @param g2
      */
     // MOSTLY CHECKING WHAT STATE THE GAME IS IN, WHAT TO DRAW, AND GENERATING
@@ -103,43 +101,7 @@ public class UI {
             }
             commandNum = 0;
 
-            // GENERATING RANDOM NUMBERS FOR THE EQUATION
-            equationYIndex = (int) (Math.random() * equationX.length);
-            equationXIndex = (int) (Math.random() * equationY.length);
-            equationOperatorIndex = (int) (Math.random() * equationOperator.length);
-            setAnswer();
-            randAns = new double[4];
-
-            // FILL RANDANS WITH RANDOM INTEGER NUMBERS
-            for (int i = 0; i < randAns.length; i++) {
-                randAns[i] = answer + (int) (Math.random() * (5 + 5)) - 5;
-                if (randAns[i] == answer) {
-                    randAns[i] = answer + (int) (Math.random() * (5 + 5)) - 5;
-                }
-                for (int j = 0; j < i; j++) {
-                    if (randAns[i] == randAns[j]) {
-                        randAns[i] = answer + (int) (Math.random() * (5 + 5)) - 5;
-                    }
-                }
-            }
-
-            // SHUFFLE ARRAY
-            randAns[0] = answer;
-            for (int i = 0; i < randAns.length; i++) {
-                int rand = (int) (Math.random() * randAns.length);
-                double temp = randAns[i];
-                randAns[i] = randAns[rand];
-                randAns[rand] = temp;
-            }
-
-            // CHECK IF ANSWERS REPEAT AND SHUFFLE AGAIN
-            for (int i = 0; i < randAns.length; i++) {
-                for (int j = 0; j < i; j++) {
-                    if (randAns[i] == randAns[j]) {
-                        randAns[j] = answer + (int) (Math.random() * (5 + 5)) - 5;
-                    }
-                }
-            }
+            randomEquation();
 
             gameFinished();
             drawPlayerLife();
@@ -265,30 +227,6 @@ public class UI {
                     break;
             }
             gp.score.undefeatedEnemy();
-        }
-    }
-
-    // SOLVIN THE EQUATION AND SETTING THE ANSWER
-    public void setAnswer() {
-
-        switch (equationOperator[equationOperatorIndex]) {
-            case "+":
-                answer = equationX[equationXIndex] + equationY[equationYIndex];
-                break;
-            case "-":
-                answer = equationX[equationXIndex] - equationY[equationYIndex];
-                break;
-            case "*":
-                answer = equationX[equationXIndex] * equationY[equationYIndex];
-                break;
-            case "/":
-                if ((double) equationX[equationXIndex] / (double) equationY[equationYIndex] % 1 == 0) {
-                    answer = equationX[equationXIndex] / equationY[equationYIndex];
-                } else {
-                    equationOperatorIndex = 2;
-                    answer = (double) equationX[equationXIndex] * (double) equationY[equationYIndex];
-                }
-                break;
         }
     }
 
@@ -809,13 +747,76 @@ public class UI {
         g2.drawString(text, x, y);
     }
 
-    
-    /** 
+    /**
      * @param text
      * @return int
      */
     public int getXforCenteredText(String text) {
         int length = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
         return gp.screenWidth / 2 - length / 2;
+    }
+
+    public void randomEquation() {
+        // GENERATING RANDOM NUMBERS FOR THE EQUATION
+        equationYIndex = (int) (Math.random() * equationX.length);
+        equationXIndex = (int) (Math.random() * equationY.length);
+        equationOperatorIndex = (int) (Math.random() * equationOperator.length);
+        setAnswer();
+        randAns = new double[4];
+
+        // FILL RANDANS WITH RANDOM INTEGER NUMBERS
+        for (int i = 0; i < randAns.length; i++) {
+            randAns[i] = answer + (int) (Math.random() * (5 + 5)) - 5;
+            if (randAns[i] == answer) {
+                randAns[i] = answer + (int) (Math.random() * (5 + 5)) - 5;
+            }
+            for (int j = 0; j < i; j++) {
+                if (randAns[i] == randAns[j]) {
+                    randAns[i] = answer + (int) (Math.random() * (5 + 5)) - 5;
+                }
+            }
+        }
+
+        // SHUFFLE ARRAY
+        randAns[0] = answer;
+        for (int i = 0; i < randAns.length; i++) {
+            int rand = (int) (Math.random() * randAns.length);
+            double temp = randAns[i];
+            randAns[i] = randAns[rand];
+            randAns[rand] = temp;
+        }
+
+        // CHECK IF ANSWERS REPEAT AND SHUFFLE AGAIN
+        for (int i = 0; i < randAns.length; i++) {
+            for (int j = 0; j < i; j++) {
+                if (randAns[i] == randAns[j]) {
+                    randAns[j] = answer + (int) (Math.random() * (5 + 5)) - 5;
+                }
+            }
+        }
+    }
+
+    // SOLVIN THE EQUATION AND SETTING THE ANSWER
+    public void setAnswer() {
+
+        switch (equationOperator[equationOperatorIndex]) {
+            case "+":
+                answer = equationX[equationXIndex] + equationY[equationYIndex];
+                break;
+            case "-":
+                answer = equationX[equationXIndex] - equationY[equationYIndex];
+                break;
+            case "*":
+                answer = equationX[equationXIndex] * equationY[equationYIndex];
+                break;
+            case "/":
+                if ((double) equationX[equationXIndex] / (double) equationY[equationYIndex] % 1 == 0) {
+                    answer = equationX[equationXIndex] / equationY[equationYIndex];
+                } else {
+                    equationOperatorIndex = 2;
+                    answer = (double) equationX[equationXIndex] * (double) equationY[equationYIndex];
+                }
+                break;
+        }
     }
 }
