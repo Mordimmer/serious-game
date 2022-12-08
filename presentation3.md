@@ -81,7 +81,7 @@ Wyniki gracza przechowywane są w pliku /score.txt, co pozwala na łatwe odczyta
 
 --- 
 
-# Stan realizacji projektu
+# Stan realizacji projektu 95%
 1. Zaprojektowano interfejs graficzny gry
 2. Zaprojektowano menu gry
 3. Zrealizowano wszystkie grafiki, lecz mogą zostać one jeszcze poprawione
